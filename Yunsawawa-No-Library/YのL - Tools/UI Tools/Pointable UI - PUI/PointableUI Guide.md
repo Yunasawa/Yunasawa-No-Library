@@ -88,13 +88,22 @@ Invoke event assigned to PUI.
 <details>
  <summary><b> Event Invoked </b></summary>
   <ul>
-    <li> OnSelect: Invoked when PUI is selected. </li>
-    <li> OnDeselect: Invoked when PUI is deselected. </li>
-    <li> OnPointerClick: Invoked when PUI is clicked then released, but not works when pointer is out of PUI. </li>
-    <li> OnPointerDown: Invoked when PUI is pressed. </li>
-    <li> OnPointerUp: Invoked when PUI is released, still works when pointer is out of PUI. </li>
+    <li> OnSelect: </li> 
+      - When you click on PUI (pointer down and up in that PUI's area) then PUI marked as "Selected", OnSelect() will be invoked.
+    <li> OnDeselect: </li> 
+      - When PUI is "Selected" then you click on a place outside of PUI, then PUI marked as "Deselected", OnDeseleted() invoked.
+    <li> OnPointerClick: </li>
+      - When your pointer downs and ups in range of PUI, it will be marked as "Clicked", OnClick() will be invoked. 
+      <br> - If your pointer ups inside PUI, OnClick() and OnUp() both runs. </br>
+    <li> OnPointerDown: </li>
+      - When you pointer downs on it and invoke OnDown().
+    <li> OnPointerUp: </li>
+      - When you pointer ups even in or out the area of PUI, OnUp() will be invoked.
+      <br> - If your pointer ups outside of PUI, only OnUp() runs. </br>
     <li> OnEnter: Invoked when pointer enter PUI. </li>
+      - OnEnter() called when you hover your pointer inside PUI.
     <li> OnExit: Invoked when pointer exit PUI; </li>
+      - OnExit() called when you hover your pointer outside PUI.
   </ul>
  <p align="center">
    <img width="100%" alt="TransitionColorTint" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/0484cc5c-0f3b-401a-ad9a-a094259a3a96">
