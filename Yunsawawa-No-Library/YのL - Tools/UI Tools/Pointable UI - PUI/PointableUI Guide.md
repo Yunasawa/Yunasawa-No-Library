@@ -95,6 +95,7 @@ Invoke event assigned to PUI.
     <li> OnPointerClick: </li>
       - When your pointer downs and ups in range of PUI, it will be marked as "Clicked", OnClick() will be invoked. 
       <br> - If your pointer ups inside PUI, OnClick() and OnUp() both runs. </br>
+      <br> - After click, PUI marked as "Selected". </br>
     <li> OnPointerDown: </li>
       - When you pointer downs on it and invoke OnDown().
     <li> OnPointerUp: </li>
