@@ -7,8 +7,8 @@
 If you are making an inventory system for your game and you use Button to show if the item is selected or invoke methods that
 be called when you clicked on the Button, then you have a very big problem, the item slot (Button) will be deselected when you
 click on a random place. Or when you make a button to delete an item, you want that when you press the button by accident, and
-youwant to hover it out of the button then release it to cancel the deleting action, but the Button that Unity gives you is suck?
-Here is the solution:
+youwant to hover it out of the button then release it to cancel the deleting action, but the Button that Unity gives you is so
+suck? Here is the solution:
 
 A better version of Unity's Button:
 - Have more individual modes for different purposes. Such as
