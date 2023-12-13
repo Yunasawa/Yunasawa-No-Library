@@ -133,6 +133,11 @@ Specific mode of PUI for different purposes.
   <p align="center">
    <img width=600" alt="TransitionColorTint" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/12783369-e76c-4224-86fd-d3da7912a4e7">
   </p>
+  <b> How to use: </b>
+    <br>- First, create a layer and name it whatever you want (For example "IgnoreDeselect".</br>
+    - Assign that layer name into Ignore Deselect Name field.
+    <br>- Pick the correct layer in Ignore Deselect Layer (Just for sure). </br>
+    - Mark all the UI elements that you want to ignore with the tag you created.
 </details>
 
 <details>
