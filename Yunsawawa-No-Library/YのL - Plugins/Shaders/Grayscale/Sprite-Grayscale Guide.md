@@ -10,5 +10,11 @@
 - Works on UI/Image
 - Works with Masking component (Scroll view mask)
 
+### Preview
+
+ <p align="center">
+   <img width="50%" alt="TransitionColorTint" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/f8cf81d4-a75c-49c5-8c97-da6628e98544">
+ </p>
+
 ### Usage
 - Assign "Material" field in Image component with "Sprite-Grayscale" material.
