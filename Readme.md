@@ -18,7 +18,7 @@ This library contains several extension features of Plugins, Tools, Constants, M
 
 ## Features
 1. [Tools]()
-   - [Pointable UI (PUI)](yunasawa-no-library)
+   - [Pointable UI (PUI)](Yunasawa-No-Library)
 2. [Plugins]()
    - [Shader]
      - [Grayscale]
