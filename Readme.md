@@ -18,6 +18,7 @@ This library contains several extension features of Plugins, Tools, Constants, M
 
 ## Features
 1. [Tools](#1-tools)
+2. [Plugins](#2-plugins)
 
 
 
