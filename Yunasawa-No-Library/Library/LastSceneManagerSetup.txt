@@ -1,6 +1,0 @@
-sceneSetups:
-- path: "Assets/Plugins/Y\u306EL/Tools/UI Tools/Tab Selector UI - TSUI/Demos/TSUI
-    - Demo.unity"
-  isLoaded: 1
-  isActive: 1
-  isSubScene: 0
