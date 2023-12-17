@@ -33,3 +33,5 @@ This is the component added to buttons to help showing up linked Tab Page when s
 This is the component added to pages showed or hided when linked Tab Button is selected.
 ```
 
+<b><i> Note: </i></b> 
+  - Make sure to refer the pages to "Tab Selection Pair" field in Tab Manager with the key is correct Tab Button.
