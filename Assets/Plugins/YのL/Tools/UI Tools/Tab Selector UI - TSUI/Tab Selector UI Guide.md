@@ -6,7 +6,24 @@
 
 ## Description
 ```
-
+Your making an UI function with several tabs, there're many buttons link to the pages; but you have to make a custom manager
+script to manage the buttons and tabs to decide which to show up (enable), which to hide (disable). With this, you can easily
+do the work with just some few steps.
 ```
 
 ## Usage Guide
+
+<h3> <img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/956baea7-c881-4f6c-8b10-8e9eca2f66b4" alt=""> Tab Button </h3>
+
+```
+This is the component added to buttons to help showing up linked page when selected.
+```
+
+<b><i> Note: </i></b> 
+  - If you add this into a button (object contains Button component), then Button component will be removed.
+  - This have Pointable UI's functions so you can edit or invoke actions just like PUI can do.
+
+<b><i> Recommend: </i></b>
+  
+
+
