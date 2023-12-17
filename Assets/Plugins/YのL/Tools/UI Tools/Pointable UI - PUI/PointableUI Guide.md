@@ -2,7 +2,7 @@
 
 <h4 align="center"> A better solution for Unity's Button with more features and advantages. <br><br>
 
-<a align="right" href="https://github.com/Yunasawa/Yunasawa-No-Library/blob/main/Readme.md"> Return to Library </a>
+<kbd><a align="right" href="https://github.com/Yunasawa/Yunasawa-No-Library/blob/main/Readme.md"><font size="10"> Return to Library </font></a></kbd>
 
 ## Description
 ```
