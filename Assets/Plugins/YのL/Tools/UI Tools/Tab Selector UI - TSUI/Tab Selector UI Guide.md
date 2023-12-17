@@ -23,7 +23,8 @@ This is the component added to buttons to help showing up linked page when selec
   - If you add this into a button (object contains Button component), then Button component will be removed.
   - This have Pointable UI's functions so you can edit or invoke actions just like PUI can do.
 
-<b><i> Recommend: </i></b>
+<b><i> Update: </i></b>
+  - Fix the compatibility of TSUI and PUI (PUI in IgnoreDeselect mode but TSUI can still have selection transition). 
   
 
 
