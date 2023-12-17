@@ -1,4 +1,4 @@
-<h1 align="center"> YのL Tools - Pointable UI (PUI) <img align="center" width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/e57c2418-f1cc-435d-b516-9d4f4ccce7ab" alt=""></h1>
+<h1 align="center"> YのL Tools - <img width="30" height="30" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/e57c2418-f1cc-435d-b516-9d4f4ccce7ab" alt=""> Pointable UI (PUI) </h1>
 
 <h4 align="center"> A better solution for Unity's Button with more features and advantages. <br><br>
 
