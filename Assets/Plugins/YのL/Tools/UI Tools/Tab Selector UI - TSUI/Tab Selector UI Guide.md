@@ -27,7 +27,7 @@ This is the component added to buttons to help showing up linked Tab Page when s
 <b><i> Update: </i></b>
   - Fix the compatibility of TSUI and PUI (PUI in IgnoreDeselect mode but TSUI can still have selection transition). 
   
-<h3> <img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/956baea7-c881-4f6c-8b10-8e9eca2f66b4" alt=""> Tab Page </h3>
+<h3> <img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/fde966dd-f4d7-45ab-a63a-dd6eeaa7b286" alt=""> Tab Page </h3>
 
 ```
 This is the component added to pages showed or hided when linked Tab Button is selected.
