@@ -18,6 +18,7 @@ namespace YNL.Tools.UI
         [Space(10)]
         [HideIf("Transition", Value = PUITransition.Animation), FoldoutGroup("UI Graphic")] public Image TargetGraphic;
         [Space()]
+        private Color DefaultColor;
         [ShowIf("Transition", Value = PUITransition.ColorTint), FoldoutGroup("UI Graphic")] public Color NormalColor = new(1, 1, 1, 1);
         [ShowIf("Transition", Value = PUITransition.ColorTint), FoldoutGroup("UI Graphic")] public Color HighlightedColor = new(1, 1, 1, 1);
         [ShowIf("Transition", Value = PUITransition.ColorTint), FoldoutGroup("UI Graphic")] public Color PressedColor = new(0.65f, 0.65f, 0.65f, 1);
@@ -75,7 +76,7 @@ namespace YNL.Tools.UI
 
         #region ▶ Methods
         #region ▶ Editor Methods
-        public void OnValidate()
+        protected virtual void OnValidate()
         {
             if (Transition == PUITransition.ColorTint || Transition == PUITransition.SpriteSwap)
             {
@@ -86,6 +87,8 @@ namespace YNL.Tools.UI
                 }
                 else
                 {
+                    DefaultColor = TargetGraphic.color;
+
                     if (Transition == PUITransition.ColorTint)
                     {
                         if (NormalColor != Color.white) TargetGraphic.color = NormalColor;
@@ -150,7 +153,11 @@ namespace YNL.Tools.UI
                 return;
             }
 
-            if (Transition == PUITransition.ColorTint) TargetGraphic.color = NormalColor;
+            if (Transition == PUITransition.ColorTint)
+            {
+                if (NormalColor != Color.white) TargetGraphic.color = NormalColor;
+                else TargetGraphic.color = DefaultColor;
+            }
             if (Transition == PUITransition.SpriteSwap) TargetGraphic.sprite = NormalSprite;
             if (Transition == PUITransition.Animation) if (_Animator != null) _Animator.Play(NormalTrigger);
 
@@ -167,7 +174,11 @@ namespace YNL.Tools.UI
 
             if (Mode == PUIMode.OnlyClickButton)
             {
-                if (Transition == PUITransition.ColorTint) TargetGraphic.color = NormalColor;
+                if (Transition == PUITransition.ColorTint)
+                {
+                    if (NormalColor != Color.white) TargetGraphic.color = NormalColor;
+                    else TargetGraphic.color = DefaultColor;
+                }
                 if (Transition == PUITransition.SpriteSwap) TargetGraphic.sprite = NormalSprite;
                 if (Transition == PUITransition.Animation) if (_Animator != null) _Animator.Play(NormalTrigger);
                 PUIEventHandler("OnClick", eventData);
@@ -223,7 +234,11 @@ namespace YNL.Tools.UI
 
             if (Mode == PUIMode.HoverToSelect) StartCoroutine(ReselectDelayed(null));
 
-            if (Transition == PUITransition.ColorTint) if (TargetGraphic.color != SelectedColor) TargetGraphic.color = NormalColor;
+            if (Transition == PUITransition.ColorTint) if (TargetGraphic.color != SelectedColor)
+                {
+                    if (NormalColor != Color.white) TargetGraphic.color = NormalColor;
+                    else TargetGraphic.color = DefaultColor;
+                }
             if (Transition == PUITransition.SpriteSwap) if (TargetGraphic.sprite != SelectedSprite) TargetGraphic.sprite = NormalSprite;
             if (Transition == PUITransition.Animation) if (_Animator != null) _Animator.Play(NormalTrigger);
 

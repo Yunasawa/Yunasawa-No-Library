@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace YNL.Tools.UI
 {
@@ -11,6 +12,14 @@ namespace YNL.Tools.UI
 
         public TabState TabState = TabState.Deselected;
 
+        protected override void OnValidate()
+        {
+            base.OnValidate();
+
+            Button button = GetComponent<Button>();
+            if (button != null) button.DestroyOnValidate();
+        }
+
         protected void OnEnable()
         {
             _tabSelectorManager = this.transform.parent.GetComponent<TabManager>();
@@ -18,9 +27,9 @@ namespace YNL.Tools.UI
 
             this.LeftClick.AddListener(OnClick);
 
-            if (_tabSelectorManager.CurrentSelectedTag != null)
+            if (_tabSelectorManager.CurrentSelectedTab != null)
             {
-                if (_tabSelectorManager.CurrentSelectedTag == this) this.TabState = TabState.Selected;
+                if (_tabSelectorManager.CurrentSelectedTab == this) this.TabState = TabState.Selected;
                 else this.TabState = TabState.Deselected;
             }
 
@@ -42,7 +51,7 @@ namespace YNL.Tools.UI
 
         public void OnClick()
         {
-            _thisTabSelectable.SelectingEvent();
+            if (_thisTabSelectable != null) _thisTabSelectable.SelectingEvent();
             _tabSelectorManager.UpdateTabState(this);
         }
 

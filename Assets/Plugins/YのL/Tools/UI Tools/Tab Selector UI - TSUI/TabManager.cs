@@ -11,30 +11,31 @@ namespace YNL.Tools.UI
     {
         #region TSUI: Selectable Buttons
         [BoxGroup("TSUI: Selectable Buttons", centerLabel: true)]
-        [SerializeField] private List<TabButton> _tagButtonList;
-        public List<TabButton> TabButtonList => _tagButtonList;
+        [SerializeField] private List<TabButton> _tabButtonList;
+        public List<TabButton> TabButtonList => _tabButtonList;
 
         [BoxGroup("TSUI: Selectable Buttons", centerLabel: true)]
-        public TabButton CurrentSelectedTag;
+        public TabButton CurrentSelectedTab;
 
         [BoxGroup("TSUI: Selectable Buttons", centerLabel: true)]
         [Button("Get All TSUI Buttons")]
         public void GetAllTSUIButtons()
         {
-            _tagButtonList = this.GetComponentsInChildren<TabButton>().ToList();
+            _tabButtonList = this.GetComponentsInChildren<TabButton>().ToList();
+            CurrentSelectedTab = _tabButtonList[0];
         }
         #endregion
 
         [Space(10)]
-        [SerializeField] private TagSelectorType _tagSelectorType;
+        [SerializeField] private TabSelectorType _tabSelectorType;
 
         #region TSUI: Switch Tab
-        [ShowIfGroup("_tagSelectorType", value: TagSelectorType.SwitchTab)]
-        [BoxGroup("_tagSelectorType/TSUI: Switch Tab", centerLabel: true)]
+        [ShowIfGroup("_tabSelectorType", value: TabSelectorType.SwitchTab)]
+        [BoxGroup("_tabSelectorType/TSUI: Switch Tab", centerLabel: true)]
         [SerializeField] private SerializableDictionary<TabButton, TabPage> _tabSelectionPair;
         public SerializableDictionary<TabButton, TabPage> TabSelectionPair => _tabSelectionPair;
 
-        [BoxGroup("_tagSelectorType/TSUI: Switch Tab", centerLabel: true)]
+        [BoxGroup("_tabSelectorType/TSUI: Switch Tab", centerLabel: true)]
         [Button("Get All TSUI Buttons To Key")]
         public void GetAllTSUIButtonsToKey()
         {
@@ -51,29 +52,29 @@ namespace YNL.Tools.UI
 
         public void UpdateTabState(TabButton selected)
         {
-            CurrentSelectedTag = selected;
+            CurrentSelectedTab = selected;
 
-            switch (_tagSelectorType)
+            switch (_tabSelectorType)
             {
-                case TagSelectorType.None:
-                    foreach (var tag in _tagButtonList) tag.TabState = TabState.Deselected;
-                    CurrentSelectedTag.TabState = TabState.Selected;
+                case TabSelectorType.None:
+                    foreach (var tag in _tabButtonList) tag.TabState = TabState.Deselected;
+                    CurrentSelectedTab.TabState = TabState.Selected;
                     break;
-                case TagSelectorType.SwitchTab:
+                case TabSelectorType.SwitchTab:
                     foreach (var pair in _tabSelectionPair)
                     {
                         pair.Key.TabState = TabState.Deselected;
                         pair.Value.gameObject.SetActive(false);
                     }
-                    CurrentSelectedTag.TabState = TabState.Selected;
-                    _tabSelectionPair[CurrentSelectedTag].gameObject.SetActive(true);
+                    CurrentSelectedTab.TabState = TabState.Selected;
+                    _tabSelectionPair[CurrentSelectedTab].gameObject.SetActive(true);
                     break;
             }
         }
 
         private void UpdateTagSelecting()
         {
-            foreach (var tag in _tagButtonList)
+            foreach (var tag in _tabButtonList)
             {
                 if (tag.TabState == TabState.Selected) tag.OnSelectedUpdate();
                 else if (tag.TabState == TabState.Deselected) tag.OnDeselectedUpdate();
@@ -83,7 +84,7 @@ namespace YNL.Tools.UI
 }
 
 [System.Serializable]
-public enum TagSelectorType
+public enum TabSelectorType
 {
     None, SwitchTab
 }
