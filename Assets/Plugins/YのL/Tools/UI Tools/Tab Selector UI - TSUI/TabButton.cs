@@ -5,19 +5,21 @@ using UnityEngine.UI;
 namespace YNL.Tools.UI
 {
     [AddComponentMenu("YNL/Tools/UI/Tab Selector UI/Tab Button")]
-    public class TabButton : PointableUI, IPointerClickHandler
+    public class TabButton : MonoBehaviour
     {
         private TabManager _tabSelectorManager;
         private ITabSelectable _thisTabSelectable;
+        private Button _thisButton;
 
         public TabState TabState = TabState.Deselected;
 
-        protected override void OnValidate()
+        protected void OnValidate()
         {
-            base.OnValidate();
-
-            Button button = GetComponent<Button>();
-            if (button != null) button.DestroyOnValidate();
+            if (_thisButton == null)
+            {
+                if (GetComponent<Button>() == null) _thisButton = this.gameObject.AddComponent<Button>();
+                else _thisButton = GetComponent<Button>();
+            }
         }
 
         protected void OnEnable()
@@ -25,7 +27,7 @@ namespace YNL.Tools.UI
             _tabSelectorManager = this.transform.parent.GetComponent<TabManager>();
             _thisTabSelectable = this.GetComponent<ITabSelectable>();
 
-            this.LeftClick.AddListener(OnClick);
+            _thisButton.onClick.AddListener(OnClick);
 
             if (_tabSelectorManager.CurrentSelectedTab != null)
             {
@@ -34,8 +36,6 @@ namespace YNL.Tools.UI
             }
 
             if (this.TabState == TabState.Selected) _tabSelectorManager.UpdateTabState(this);
-
-            _ = Mode == PUIMode.OnlyClickButton;
         }
 
         #region Tab State Functions: Selected/Deselected

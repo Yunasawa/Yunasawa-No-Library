@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 178567148}
   - component: {fileID: 178567147}
   - component: {fileID: 178567149}
+  - component: {fileID: 178567150}
   m_Layer: 6
   m_Name: Button 1
   m_TagString: Untagged
@@ -243,7 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.4584905, b: 0.4584905, a: 1}
+  m_Color: {r: 0.81886786, g: 0.73288095, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -281,9 +282,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Interactable: 1
+  Mode: 0
+  IgnoreDeselectName: IgnoreDeselect
+  IgnoreDeselectLayer:
+    serializedVersion: 2
+    m_Bits: 0
   Transition: 1
   TargetGraphic: {fileID: 178567147}
-  NormalColor: {r: 1, g: 0.4584905, b: 0.4584905, a: 1}
+  NormalColor: {r: 1, g: 1, b: 1, a: 1}
   HighlightedColor: {r: 0.98911774, g: 1, b: 0.2999999, a: 1}
   PressedColor: {r: 0.48360047, g: 1, b: 0.3830188, a: 1}
   SelectedColor: {r: 0.99261874, g: 0.4584905, b: 1, a: 1}
@@ -339,12 +345,22 @@ MonoBehaviour:
   Exit:
     m_PersistentCalls:
       m_Calls: []
-  Mode: 0
-  IgnoreDeselectName: IgnoreDeselect
-  IgnoreDeselectLayer:
-    serializedVersion: 2
-    m_Bits: 0
   TabState: 1
+--- !u!114 &178567150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 178567144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9b6d3b14444b7a4795924d01f885de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _thisImage: {fileID: 0}
+  _unSelectColor: {r: 1, g: 0.8947368, b: 0, a: 1}
+  _selectColor: {r: 0.335849, g: 0.30049646, b: 0, a: 1}
 --- !u!1 &367124933
 GameObject:
   m_ObjectHideFlags: 0
@@ -545,8 +561,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -754,6 +770,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Interactable: 1
+  Mode: 1
+  IgnoreDeselectName: IgnoreDeselect
+  IgnoreDeselectLayer:
+    serializedVersion: 2
+    m_Bits: 0
   Transition: 1
   TargetGraphic: {fileID: 585127001}
   NormalColor: {r: 1, g: 0, b: 0, a: 1}
@@ -812,11 +833,6 @@ MonoBehaviour:
   Exit:
     m_PersistentCalls:
       m_Calls: []
-  Mode: 1
-  IgnoreDeselectName: IgnoreDeselect
-  IgnoreDeselectLayer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &585127001
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -999,16 +1015,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7db9dc374668504887b2bedc4c0f5b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tabButtonList: []
-  CurrentSelectedTab: {fileID: 0}
+  _tabButtonList:
+  - {fileID: 178567149}
+  - {fileID: 1756069406}
+  CurrentSelectedTab: {fileID: 178567149}
   _tabSelectorType: 1
   _tabSelectionPair:
     keys:
     - {fileID: 178567149}
     - {fileID: 1756069406}
     values:
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 535981583}
+    - {fileID: 971628075}
 --- !u!1 &971628071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1373,6 +1391,7 @@ GameObject:
   - component: {fileID: 1756069405}
   - component: {fileID: 1756069404}
   - component: {fileID: 1756069406}
+  - component: {fileID: 1756069407}
   m_Layer: 6
   m_Name: Button 2
   m_TagString: Untagged
@@ -1413,7 +1432,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.42830187, g: 1, b: 0.9743136, a: 1}
+  m_Color: {r: 0.81960785, g: 0.73333335, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1451,6 +1470,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Interactable: 1
+  Mode: 0
+  IgnoreDeselectName: IgnoreDeselect
+  IgnoreDeselectLayer:
+    serializedVersion: 2
+    m_Bits: 0
   Transition: 1
   TargetGraphic: {fileID: 1756069404}
   NormalColor: {r: 1, g: 1, b: 1, a: 1}
@@ -1509,12 +1533,22 @@ MonoBehaviour:
   Exit:
     m_PersistentCalls:
       m_Calls: []
-  Mode: 0
-  IgnoreDeselectName: IgnoreDeselect
-  IgnoreDeselectLayer:
-    serializedVersion: 2
-    m_Bits: 0
   TabState: 1
+--- !u!114 &1756069407
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1756069401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9b6d3b14444b7a4795924d01f885de0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _thisImage: {fileID: 0}
+  _unSelectColor: {r: 1, g: 0.8947368, b: 0, a: 1}
+  _selectColor: {r: 0.335849, g: 0.30049646, b: 0, a: 1}
 --- !u!1 &2050006887
 GameObject:
   m_ObjectHideFlags: 0

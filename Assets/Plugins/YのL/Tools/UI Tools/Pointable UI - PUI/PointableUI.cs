@@ -1,9 +1,11 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using YNL.Attribute;
 
 namespace YNL.Tools.UI
 {
@@ -13,64 +15,66 @@ namespace YNL.Tools.UI
         #region ▶ Properties
         public bool Interactable = true;
 
-        #region ▶ UI Graphics
-        [FoldoutGroup("UI Graphic")] public PUITransition Transition;
-        [Space(10)]
-        [HideIf("Transition", Value = PUITransition.Animation), FoldoutGroup("UI Graphic")] public Image TargetGraphic;
-        [Space()]
-        private Color DefaultColor;
-        [ShowIf("Transition", Value = PUITransition.ColorTint), FoldoutGroup("UI Graphic")] public Color NormalColor = new(1, 1, 1, 1);
-        [ShowIf("Transition", Value = PUITransition.ColorTint), FoldoutGroup("UI Graphic")] public Color HighlightedColor = new(1, 1, 1, 1);
-        [ShowIf("Transition", Value = PUITransition.ColorTint), FoldoutGroup("UI Graphic")] public Color PressedColor = new(0.65f, 0.65f, 0.65f, 1);
-        [ShowIf("Transition", Value = PUITransition.ColorTint), FoldoutGroup("UI Graphic")] public Color SelectedColor = new(1, 1, 1, 1);
-        [ShowIf("Transition", Value = PUITransition.ColorTint), FoldoutGroup("UI Graphic")] public Color DisabledColor = new(0.75f, 0.75f, 0.75f, 0.5f);
-        [ShowIf("Transition", Value = PUITransition.ColorTint), FoldoutGroup("UI Graphic")] public float FadeDuration = 0.1f;
-        [Space()]
-        [ShowIf("Transition", Value = PUITransition.SpriteSwap), FoldoutGroup("UI Graphic")] public Sprite NormalSprite;
-        [ShowIf("Transition", Value = PUITransition.SpriteSwap), FoldoutGroup("UI Graphic")] public Sprite HighlightedSprite;
-        [ShowIf("Transition", Value = PUITransition.SpriteSwap), FoldoutGroup("UI Graphic")] public Sprite PressedSprite;
-        [ShowIf("Transition", Value = PUITransition.SpriteSwap), FoldoutGroup("UI Graphic")] public Sprite SelectedSprite;
-        [ShowIf("Transition", Value = PUITransition.SpriteSwap), FoldoutGroup("UI Graphic")] public Sprite DisabledSprite;
-        [Space(10)]
-        [ShowIf("Transition", Value = PUITransition.Animation), FoldoutGroup("UI Graphic")] public Animator _Animator;
-        [Space(10)]
-        [ShowIf("Transition", Value = PUITransition.Animation), FoldoutGroup("UI Graphic")] public string NormalTrigger = "Normal";
-        [ShowIf("Transition", Value = PUITransition.Animation), FoldoutGroup("UI Graphic")] public string HighlightedTrigger = "Highlighted";
-        [ShowIf("Transition", Value = PUITransition.Animation), FoldoutGroup("UI Graphic")] public string PressedTrigger = "Pressed";
-        [ShowIf("Transition", Value = PUITransition.Animation), FoldoutGroup("UI Graphic")] public string SelectedTrigger = "Selected";
-        [ShowIf("Transition", Value = PUITransition.Animation), FoldoutGroup("UI Graphic")] public string DisabledTrigger = "Disabled";
-        #endregion
-
-        #region ▶ Click Event
-        [FoldoutGroup("Click Event")]
-        [Header("Invoked when PUI is selected")]
-        [FoldoutGroup("Click Event/On Select | Deselect")] public UnityEvent Select;
-        [Header("Invoked when PUI is deselected")]
-        [FoldoutGroup("Click Event/On Select | Deselect")] public UnityEvent Deselect;
-        [Header("Invoked when PUI is clicked, but not be invoked when pointer is out of PUI")]
-        [FoldoutGroup("Click Event/On Pointer Click")] public UnityEvent LeftClick;
-        [FoldoutGroup("Click Event/On Pointer Click")] public UnityEvent RightClick;
-        [FoldoutGroup("Click Event/On Pointer Click")] public UnityEvent MiddleClick;
-        [Header("Invoked when PUI is pressed")]
-        [FoldoutGroup("Click Event/On Pointer Down")] public UnityEvent LeftDown;
-        [FoldoutGroup("Click Event/On Pointer Down")] public UnityEvent RightDown;
-        [FoldoutGroup("Click Event/On Pointer Down")] public UnityEvent MiddleDown;
-        [Header("Invoked when PUI is released, still be invoked even when pointer is out of PUI")]
-        [FoldoutGroup("Click Event/On Pointer Up")] public UnityEvent LeftUp;
-        [FoldoutGroup("Click Event/On Pointer Up")] public UnityEvent RightUp;
-        [FoldoutGroup("Click Event/On Pointer Up")] public UnityEvent MiddleUp;
-        [Header("Invoked when pointer enter a PUI")]
-        [FoldoutGroup("Click Event/On Enter | Exit")] public UnityEvent Enter;
-        [Header("Invoked when pointer exit a PUI")]
-        [FoldoutGroup("Click Event/On Enter | Exit")] public UnityEvent Exit;
-        #endregion
-
         #region ▶ PUIMode Properties
         private bool _isSelected;
-        [FoldoutGroup("PUI Mode")] public PUIMode Mode;
+        [BoxGroup("PUI Mode", showLabel: false)] public PUIMode Mode;
         [Space()]
-        [ShowIf("Mode", Value = PUIMode.IgnoreDeselect), FoldoutGroup("PUI Mode")] public string IgnoreDeselectName = "IgnoreDeselect";
-        [ShowIf("Mode", Value = PUIMode.IgnoreDeselect), FoldoutGroup("PUI Mode")] public LayerMask IgnoreDeselectLayer;
+        [ShowIf("Mode", Value = PUIMode.IgnoreDeselect), BoxGroup("PUI Mode")] public string IgnoreDeselectName = "IgnoreDeselect";
+        [ShowIf("Mode", Value = PUIMode.IgnoreDeselect), BoxGroup("PUI Mode")] public LayerMask IgnoreDeselectLayer;
+        #endregion
+
+        #region ▶ PUI Graphics
+        [BoxGroup("PUI Graphic")] public PUITransition Transition;
+        [Space(10)]
+        [HideIfEnum("Transition", (int)PUITransition.None), BoxGroup("PUI Graphic")]
+        [HideIfEnum("Transition", (int)PUITransition.Animation), BoxGroup("PUI Graphic")]
+        public Image TargetGraphic;
+        [Space()]
+        private Color DefaultColor;
+        [ShowIf("Transition", Value = PUITransition.ColorTint), BoxGroup("PUI Graphic")] public Color NormalColor = new(1, 1, 1, 1);
+        [ShowIf("Transition", Value = PUITransition.ColorTint), BoxGroup("PUI Graphic")] public Color HighlightedColor = new(1, 1, 1, 1);
+        [ShowIf("Transition", Value = PUITransition.ColorTint), BoxGroup("PUI Graphic")] public Color PressedColor = new(0.65f, 0.65f, 0.65f, 1);
+        [ShowIf("Transition", Value = PUITransition.ColorTint), BoxGroup("PUI Graphic")] public Color SelectedColor = new(1, 1, 1, 1);
+        [ShowIf("Transition", Value = PUITransition.ColorTint), BoxGroup("PUI Graphic")] public Color DisabledColor = new(0.75f, 0.75f, 0.75f, 0.5f);
+        [ShowIf("Transition", Value = PUITransition.ColorTint), BoxGroup("PUI Graphic")] public float FadeDuration = 0.1f;
+        [Space()]
+        [ShowIf("Transition", Value = PUITransition.SpriteSwap), BoxGroup("PUI Graphic")] public Sprite NormalSprite;
+        [ShowIf("Transition", Value = PUITransition.SpriteSwap), BoxGroup("PUI Graphic")] public Sprite HighlightedSprite;
+        [ShowIf("Transition", Value = PUITransition.SpriteSwap), BoxGroup("PUI Graphic")] public Sprite PressedSprite;
+        [ShowIf("Transition", Value = PUITransition.SpriteSwap), BoxGroup("PUI Graphic")] public Sprite SelectedSprite;
+        [ShowIf("Transition", Value = PUITransition.SpriteSwap), BoxGroup("PUI Graphic")] public Sprite DisabledSprite;
+        [Space(10)]
+        [ShowIf("Transition", Value = PUITransition.Animation), BoxGroup("PUI Graphic")] public Animator _Animator;
+        [Space(10)]
+        [ShowIf("Transition", Value = PUITransition.Animation), BoxGroup("PUI Graphic")] public string NormalTrigger = "Normal";
+        [ShowIf("Transition", Value = PUITransition.Animation), BoxGroup("PUI Graphic")] public string HighlightedTrigger = "Highlighted";
+        [ShowIf("Transition", Value = PUITransition.Animation), BoxGroup("PUI Graphic")] public string PressedTrigger = "Pressed";
+        [ShowIf("Transition", Value = PUITransition.Animation), BoxGroup("PUI Graphic")] public string SelectedTrigger = "Selected";
+        [ShowIf("Transition", Value = PUITransition.Animation), BoxGroup("PUI Graphic")] public string DisabledTrigger = "Disabled";
+        #endregion
+
+        #region ▶ PUI Event
+        [FoldoutGroup("PUI Event")]
+        [Header("Invoked when PUI is selected")]
+        [FoldoutGroup("PUI Event/On Select | Deselect")] public UnityEvent Select;
+        [Header("Invoked when PUI is deselected")]
+        [FoldoutGroup("PUI Event/On Select | Deselect")] public UnityEvent Deselect;
+        [Header("Invoked when PUI is clicked, but not be invoked when pointer is out of PUI")]
+        [FoldoutGroup("PUI Event/On Pointer Click")] public UnityEvent LeftClick;
+        [FoldoutGroup("PUI Event/On Pointer Click")] public UnityEvent RightClick;
+        [FoldoutGroup("PUI Event/On Pointer Click")] public UnityEvent MiddleClick;
+        [Header("Invoked when PUI is pressed")]
+        [FoldoutGroup("PUI Event/On Pointer Down")] public UnityEvent LeftDown;
+        [FoldoutGroup("PUI Event/On Pointer Down")] public UnityEvent RightDown;
+        [FoldoutGroup("PUI Event/On Pointer Down")] public UnityEvent MiddleDown;
+        [Header("Invoked when PUI is released, still be invoked even when pointer is out of PUI")]
+        [FoldoutGroup("PUI Event/On Pointer Up")] public UnityEvent LeftUp;
+        [FoldoutGroup("PUI Event/On Pointer Up")] public UnityEvent RightUp;
+        [FoldoutGroup("PUI Event/On Pointer Up")] public UnityEvent MiddleUp;
+        [Header("Invoked when pointer enter a PUI")]
+        [FoldoutGroup("PUI Event/On Enter | Exit")] public UnityEvent Enter;
+        [Header("Invoked when pointer exit a PUI")]
+        [FoldoutGroup("PUI Event/On Enter | Exit")] public UnityEvent Exit;
         #endregion
         #endregion
 
