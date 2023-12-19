@@ -30,7 +30,19 @@ This is the component added to buttons to help showing up linked Tab Page when s
 
 <b><i> Update: </i></b>
   - Fix the compatibility of TSUI and PUI (PUI in IgnoreDeselect mode but TSUI can still have selection transition). 
-  
+
+<br></br>
+
+<h3> ITabSelectable (Interface)</h3>
+
+```
+An interface implemented by a Monobehaviour class, added along with Tab Button and handles Tab Button's transitions.
+```
+
+
+
+---
+
 <h3> <img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/fde966dd-f4d7-45ab-a63a-dd6eeaa7b286" alt=""> Tab Page </h3>
 
 ```
@@ -43,6 +55,8 @@ This is the component added to pages showed or hided when linked Tab Button is s
 <b><i> Properties: </i></b>
   - Tab State: State of current Tab Page to show if it is selected or not.
   <p align="center"><img width="410" height="22" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/49e25844-7e1e-4521-b709-fb10dae600e3" alt=""></p>
+
+---
 
 <h3> <img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/21d2e23c-0c3a-4985-a6b2-4ba23946388e" alt=""> Tab Manager </h3>
 
