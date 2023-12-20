@@ -10,9 +10,10 @@ Your making an UI function with several tabs, there're many buttons link to the 
 script to manage the buttons and tabs to decide which to show up (enable), which to hide (disable). With this, you can easily
 do the work with just some few steps.
 ```
-
-## Table Of Contents
-
+<div id="back">
+<h2> Table Of Contents </h2>
+</div>
+  
 <a href="#tab-button"><img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/956baea7-c881-4f6c-8b10-8e9eca2f66b4" alt=""> Tab Button </a><br>
 <a href="#tab-button"><img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/c9dbb0f6-cca8-45bd-9234-553256f7f393" alt=""> Tab Action </a><br>
 <a href="#tab-button"><img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/fde966dd-f4d7-45ab-a63a-dd6eeaa7b286" alt=""> Tab Page </a><br>
@@ -23,6 +24,7 @@ do the work with just some few steps.
 <div id="tab-button">
 <h3> <img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/956baea7-c881-4f6c-8b10-8e9eca2f66b4" alt=""> Tab Button </h3>
 </div>
+
 
 ```
 This is the component added to buttons to help showing up linked Tab Page when selected.
@@ -40,7 +42,7 @@ This is the component added to buttons to help showing up linked Tab Page when s
 ---
 
 <div id="tab-action">
-<h3> <img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/c9dbb0f6-cca8-45bd-9234-553256f7f393" alt=""> Tab Action</h3>
+<h3> <img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/c9dbb0f6-cca8-45bd-9234-553256f7f393" alt=""> Tab Action &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp <a href="back">Back</a></h3>
 </div>
 
 ```
