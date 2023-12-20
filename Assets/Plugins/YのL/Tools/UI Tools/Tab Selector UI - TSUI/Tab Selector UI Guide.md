@@ -22,7 +22,7 @@ do the work with just some few steps.
 
 ## Usage Guide
 
-<h3 id="#tab-button"> Tab Button </h3>
+### Tab Button
 <ref target="tab-button"></ref>
 
 ```
