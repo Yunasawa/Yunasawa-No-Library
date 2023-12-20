@@ -141,11 +141,7 @@ This is the component added to parent of Tab Buttons to to manage buttons and pa
 ```
 
 <b><i> Usage: </i></b> 
-  - After adding all Tab Button components, inside Tab Manager, click on <kbd>Get All TSUI Buttons</kbd> to quickly get all Tab Buttons.
-  <p align="center"><img width="477" height="111" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/ed04fdaf-cda8-4708-98ac-4afda034417a" alt=""></p>
-
   - Switch [Tab Selector Type] into <kbd>Switch Tab</kbd>
-  <p align="center"><img width="474" height="29" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/a9ff6e41-27fd-4358-9a8c-4f90ab870aae" alt=""></p>
-
-  - Click on <kbd>Get All TSUI Buttons To Key</kbd> to add all buttons to dictionary as keys, then make sure to refer all the pages with currect button key.
-  <p align="center"><img width="474" height="184" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/e20fdae4-458d-4d9b-868d-109a170aaad7" alt=""></p>
+  - After adding all Tab Button components, if the Tab Manager is the parent object of Tab Buttons, youo can click on <kbd>Get All TSUI Buttons</kbd> to quickly get all Tab Buttons.
+  - Assign all the page fields with Tab Pages.
+  <p align="center"><img width="472" height="235" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/283ef36b-d328-4fed-a064-74b38702ead0" alt=""></p>
