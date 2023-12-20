@@ -15,9 +15,9 @@ do the work with just some few steps.
 </div>
   
 <a href="#tab-button"><img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/956baea7-c881-4f6c-8b10-8e9eca2f66b4" alt=""> Tab Button </a><br>
-<a href="#tab-button"><img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/c9dbb0f6-cca8-45bd-9234-553256f7f393" alt=""> Tab Action </a><br>
-<a href="#tab-button"><img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/fde966dd-f4d7-45ab-a63a-dd6eeaa7b286" alt=""> Tab Page </a><br>
-<a href="#tab-button"><img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/21d2e23c-0c3a-4985-a6b2-4ba23946388e" alt=""> Tab Manager </a><br>
+<a href="#tab-action"><img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/c9dbb0f6-cca8-45bd-9234-553256f7f393" alt=""> Tab Action </a><br>
+<a href="#tab-page"><img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/fde966dd-f4d7-45ab-a63a-dd6eeaa7b286" alt=""> Tab Page </a><br>
+<a href="#tab-manager"><img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/21d2e23c-0c3a-4985-a6b2-4ba23946388e" alt=""> Tab Manager </a><br>
 
 ## Usage Guide
 
