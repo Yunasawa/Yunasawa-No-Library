@@ -22,7 +22,7 @@ do the work with just some few steps.
 
 ## Usage Guide
 
-<h3 id="#tab-button"> <img width="20" height="20" src="https://github.com/Yunasawa/Yunasawa-No-Library/assets/113672166/956baea7-c881-4f6c-8b10-8e9eca2f66b4" alt=""> Tab Button </h3>
+<h3 id="#tab-button"> Tab Button </h3>
 <ref target="tab-button"></ref>
 
 ```
