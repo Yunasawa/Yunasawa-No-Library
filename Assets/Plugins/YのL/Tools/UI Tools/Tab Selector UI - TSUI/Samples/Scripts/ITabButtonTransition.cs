@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using YNL.Tools.UI;
 
-public class ITabButtonTransition : MonoBehaviour, ITabSelectable
+public class ITabButtonTransition : MonoBehaviour, ITabActionable
 {
     [SerializeField] private bool _enable;
     [Space(10)]

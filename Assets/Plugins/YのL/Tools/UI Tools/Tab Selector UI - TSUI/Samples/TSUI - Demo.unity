@@ -342,6 +342,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef011747b9b657642b098261c4a3f738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tabEvent: 0
+  OnSelect:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeselect:
+    m_PersistentCalls:
+      m_Calls: []
   _tabTransition: 1
   _imageTransition:
   - Image: {fileID: 178567147}
@@ -636,7 +643,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094ca25f7f9f41e48b843380577dd00c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Label: Page 1
   TabState: 1
 --- !u!1 &641119308
 GameObject:
@@ -997,7 +1003,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 094ca25f7f9f41e48b843380577dd00c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Label: Page 2
   TabState: 1
 --- !u!1 &1447463602
 GameObject:
@@ -1549,6 +1554,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef011747b9b657642b098261c4a3f738, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _tabEvent: 0
+  OnSelect:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDeselect:
+    m_PersistentCalls:
+      m_Calls: []
   _tabTransition: 1
   _imageTransition:
   - Image: {fileID: 1756069404}

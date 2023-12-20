@@ -1,6 +1,6 @@
 namespace YNL.Tools.UI
 {
-    public interface ITabSelectable
+    public interface ITabActionable
     {
         void Select();
         void Deselect();

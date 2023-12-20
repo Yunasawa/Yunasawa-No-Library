@@ -12,11 +12,11 @@ namespace YNL.Tools.UI
 
         [Space(10)]
         [SerializeField] private TabManager _tabManager;
-        private ITabSelectable _thisTabSelectable;
+        private ITabActionable _thisTabSelectable;
         private Button _thisButton;
 
         [Space]
-        public TabState TabState = TabState.Deselected;
+        public ETabState TabState = ETabState.Deselected;
 
         #endregion
 
@@ -30,13 +30,13 @@ namespace YNL.Tools.UI
                 if (GetComponent<Button>() == null) _thisButton = this.gameObject.AddComponent<Button>();
                 else _thisButton = GetComponent<Button>();
             }
-            if (_thisTabSelectable == null) _thisTabSelectable = this.GetComponent<ITabSelectable>();
+            if (_thisTabSelectable == null) _thisTabSelectable = this.GetComponent<ITabActionable>();
             if (_tabManager == null) _tabManager = this.transform.parent.GetComponent<TabManager>();
         }
 
         protected void Awake()
         {
-            if (_thisTabSelectable == null) _thisTabSelectable = this.GetComponent<ITabSelectable>();
+            if (_thisTabSelectable == null) _thisTabSelectable = this.GetComponent<ITabActionable>();
             if (_tabManager == null) _tabManager = this.transform.parent.GetComponent<TabManager>();
             _thisButton.transition = Selectable.Transition.None;
 
@@ -45,26 +45,26 @@ namespace YNL.Tools.UI
 
         private void OnEnable()
         {
-            if (TabState == TabState.Selected) OnSelect();
-            if (TabState == TabState.Deselected) OnDeselect();
+            if (TabState == ETabState.Selected) OnSelect();
+            if (TabState == ETabState.Deselected) OnDeselect();
         }
         #endregion
 
         #region ▶ Tab State Functions: Select/Deselect/OnClick
         public void OnSelect()
         {
-            TabState = TabState.Selected;
+            TabState = ETabState.Selected;
             _thisTabSelectable?.Select();
         }
         public void OnDeselect()
         {
-            TabState = TabState.Deselected;
+            TabState = ETabState.Deselected;
             _thisTabSelectable?.Deselect();
         }
 
         public void OnClick()
         {
-            if (TabState == TabState.Deselected) _tabManager.TabSelected(this);
+            if (TabState == ETabState.Deselected) _tabManager.TabSelected(this);
         }
 
         public void ForceSelect() => OnClick();
@@ -73,7 +73,7 @@ namespace YNL.Tools.UI
     }
 
     [SerializeField]
-    public enum TabState
+    public enum ETabState
     {
         Selected, Deselected,
     }

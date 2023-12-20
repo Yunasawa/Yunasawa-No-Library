@@ -11,18 +11,18 @@ namespace YNL.Tools.UI
     {
         #region ▶ Properties
         [Space(10)]
-        [SerializeField] private TabSelectorType _tabSelectorType = TabSelectorType.SwitchTab;
+        [SerializeField] private ETabSelectorType _tabSelectorType = ETabSelectorType.SwitchTab;
 
         [Title("Switch Tab")]
-        [ShowIfGroup("_tabSelectorType", value: TabSelectorType.SwitchTab)]
+        [ShowIfGroup("_tabSelectorType", value: ETabSelectorType.SwitchTab)]
         [SerializeField] private SerializableDictionary<TabButton, TabPage> _tabSelectionPair;
         public SerializableDictionary<TabButton, TabPage> TabSelectionPair => _tabSelectionPair;
 
-        [ShowIfGroup("_tabSelectorType", value: TabSelectorType.SwitchTab)]
+        [ShowIfGroup("_tabSelectorType", value: ETabSelectorType.SwitchTab)]
         public TabButton CurrentSelectedTab;
 
         [PropertySpace(20)]
-        [ShowIfGroup("_tabSelectorType", value: TabSelectorType.SwitchTab)]
+        [ShowIfGroup("_tabSelectorType", value: ETabSelectorType.SwitchTab)]
         [Button("Get All TSUI Buttons To Key")]
         public void GetAllTSUIButtonsToKey()
         {
@@ -48,7 +48,7 @@ namespace YNL.Tools.UI
 
             switch (_tabSelectorType)
             {
-                case TabSelectorType.SwitchTab:
+                case ETabSelectorType.SwitchTab:
                     foreach (var pair in _tabSelectionPair)
                     {
                         pair.Key.OnDeselect();
@@ -73,10 +73,11 @@ namespace YNL.Tools.UI
         public void ForceSelect(TabButton button) => button.ForceSelect();
         #endregion
     }
-}
 
-[System.Serializable]
-public enum TabSelectorType
-{
-    None, SwitchTab
+
+    [System.Serializable]
+    public enum ETabSelectorType
+    {
+        None, SwitchTab
+    }
 }
