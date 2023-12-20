@@ -18,7 +18,7 @@ do the work with just some few steps.
 3. [Tab Page](#tab-page)
 4. [Tab Manager](#tab-manager)
 
-<a href="tab-button"> Tab Button </a>
+<a href="#tab-button"> Tab Button </a>
 
 ## Usage Guide
 
