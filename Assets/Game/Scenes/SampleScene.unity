@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 346351269}
   - component: {fileID: 346351270}
-  - component: {fileID: 346351271}
   m_Layer: 0
   m_Name: AAA
   m_TagString: Untagged
@@ -179,89 +178,6 @@ MonoBehaviour:
   HideNotNull: {x: 0, y: 0, z: 0}
   ShowNull: {x: 0, y: 0, z: 0}
   ShowNotNull: {x: 0, y: 0, z: 0}
-  one: 0
-  two: 0
-  three: 0
-  four: 0
-  five: 0
-  six: 0
-  seven: 0
---- !u!114 &346351271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 346351268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1250182dbea3bd4a837f4725558b849, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Interactable: 1
-  Mode: 0
-  IgnoreDeselectName: IgnoreDeselect
-  IgnoreDeselectLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  Transition: 0
-  TargetGraphic: {fileID: 0}
-  NormalColor: {r: 1, g: 1, b: 1, a: 1}
-  HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
-  PressedColor: {r: 0.65, g: 0.65, b: 0.65, a: 1}
-  SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-  DisabledColor: {r: 0.75, g: 0.75, b: 0.75, a: 0.5}
-  FadeDuration: 0.1
-  NormalSprite: {fileID: 0}
-  HighlightedSprite: {fileID: 0}
-  PressedSprite: {fileID: 0}
-  SelectedSprite: {fileID: 0}
-  DisabledSprite: {fileID: 0}
-  _Animator: {fileID: 0}
-  NormalTrigger: Normal
-  HighlightedTrigger: Highlighted
-  PressedTrigger: Pressed
-  SelectedTrigger: Selected
-  DisabledTrigger: Disabled
-  Select:
-    m_PersistentCalls:
-      m_Calls: []
-  Deselect:
-    m_PersistentCalls:
-      m_Calls: []
-  LeftClick:
-    m_PersistentCalls:
-      m_Calls: []
-  RightClick:
-    m_PersistentCalls:
-      m_Calls: []
-  MiddleClick:
-    m_PersistentCalls:
-      m_Calls: []
-  LeftDown:
-    m_PersistentCalls:
-      m_Calls: []
-  RightDown:
-    m_PersistentCalls:
-      m_Calls: []
-  MiddleDown:
-    m_PersistentCalls:
-      m_Calls: []
-  LeftUp:
-    m_PersistentCalls:
-      m_Calls: []
-  RightUp:
-    m_PersistentCalls:
-      m_Calls: []
-  MiddleUp:
-    m_PersistentCalls:
-      m_Calls: []
-  Enter:
-    m_PersistentCalls:
-      m_Calls: []
-  Exit:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0

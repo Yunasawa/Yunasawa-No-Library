@@ -1,4 +1,4 @@
-using Sirenix.OdinInspector;
+﻿using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,33 +9,20 @@ namespace YNL.Tools.UI
     [AddComponentMenu("YNL/Tools/UI/Tab Selector UI/Tab Manager")]
     public class TabManager : MonoBehaviour
     {
-        #region TSUI: Selectable Buttons
-        [BoxGroup("TSUI: Selectable Buttons", centerLabel: true)]
-        [SerializeField] private List<TabButton> _tabButtonList;
-        public List<TabButton> TabButtonList => _tabButtonList;
-
-        [BoxGroup("TSUI: Selectable Buttons", centerLabel: true)]
-        public TabButton CurrentSelectedTab;
-
-        [BoxGroup("TSUI: Selectable Buttons", centerLabel: true)]
-        [Button("Get All TSUI Buttons")]
-        public void GetAllTSUIButtons()
-        {
-            _tabButtonList = this.GetComponentsInChildren<TabButton>().ToList();
-            CurrentSelectedTab = _tabButtonList[0];
-        }
-        #endregion
-
+        #region ▶ Properties
         [Space(10)]
-        [SerializeField] private TabSelectorType _tabSelectorType;
+        [SerializeField] private TabSelectorType _tabSelectorType = TabSelectorType.SwitchTab;
 
-        #region TSUI: Switch Tab
+        [Title("Switch Tab")]
         [ShowIfGroup("_tabSelectorType", value: TabSelectorType.SwitchTab)]
-        [BoxGroup("_tabSelectorType/TSUI: Switch Tab", centerLabel: true)]
         [SerializeField] private SerializableDictionary<TabButton, TabPage> _tabSelectionPair;
         public SerializableDictionary<TabButton, TabPage> TabSelectionPair => _tabSelectionPair;
 
-        [BoxGroup("_tabSelectorType/TSUI: Switch Tab", centerLabel: true)]
+        [ShowIfGroup("_tabSelectorType", value: TabSelectorType.SwitchTab)]
+        public TabButton CurrentSelectedTab;
+
+        [PropertySpace(20)]
+        [ShowIfGroup("_tabSelectorType", value: TabSelectorType.SwitchTab)]
         [Button("Get All TSUI Buttons To Key")]
         public void GetAllTSUIButtonsToKey()
         {
@@ -45,41 +32,46 @@ namespace YNL.Tools.UI
         }
         #endregion
 
-        private void Update()
+        #region ▶ Monobehaviour
+        private void OnEnable()
         {
-            UpdateTagSelecting();
-        }
+            if (CurrentSelectedTab == null) CurrentSelectedTab = TabSelectionPair.First().Key;
 
-        public void UpdateTabState(TabButton selected)
+            TabSelected(CurrentSelectedTab);
+        }
+        #endregion
+
+        #region ▶ Tab Manager Methods
+        public void TabSelected(TabButton selected)
         {
             CurrentSelectedTab = selected;
 
             switch (_tabSelectorType)
             {
-                case TabSelectorType.None:
-                    foreach (var tag in _tabButtonList) tag.TabState = TabState.Deselected;
-                    CurrentSelectedTab.TabState = TabState.Selected;
-                    break;
                 case TabSelectorType.SwitchTab:
                     foreach (var pair in _tabSelectionPair)
                     {
-                        pair.Key.TabState = TabState.Deselected;
+                        pair.Key.OnDeselect();
                         pair.Value.gameObject.SetActive(false);
+                        pair.Value.OnDeselect();
                     }
-                    CurrentSelectedTab.TabState = TabState.Selected;
+                    CurrentSelectedTab.OnSelect();
                     _tabSelectionPair[CurrentSelectedTab].gameObject.SetActive(true);
+                    _tabSelectionPair[CurrentSelectedTab].OnSelect();
                     break;
             }
         }
 
-        private void UpdateTagSelecting()
+        public void ForceSelect(string label)
         {
-            foreach (var tag in _tabButtonList)
-            {
-                if (tag.TabState == TabState.Selected) tag.OnSelectedUpdate();
-                else if (tag.TabState == TabState.Deselected) tag.OnDeselectedUpdate();
-            }
+            KeyValuePair<TabButton, TabPage> pair = _tabSelectionPair.FirstOrDefault(i => i.Key.Label == label);
+
+            TabButton button = pair.Key;
+            button.ForceSelect();
         }
+
+        public void ForceSelect(TabButton button) => button.ForceSelect();
+        #endregion
     }
 }
 

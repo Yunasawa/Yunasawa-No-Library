@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -7,53 +7,68 @@ namespace YNL.Tools.UI
     [AddComponentMenu("YNL/Tools/UI/Tab Selector UI/Tab Button")]
     public class TabButton : MonoBehaviour
     {
-        private TabManager _tabSelectorManager;
+        #region ▶ Properties
+        public string Label = "";
+
+        [Space(10)]
+        [SerializeField] private TabManager _tabManager;
         private ITabSelectable _thisTabSelectable;
         private Button _thisButton;
 
+        [Space]
         public TabState TabState = TabState.Deselected;
 
+        #endregion
+
+        #region ▶ Monobehaviour
         protected void OnValidate()
         {
+            if (Label == "") Label = gameObject.name;
+
             if (_thisButton == null)
             {
                 if (GetComponent<Button>() == null) _thisButton = this.gameObject.AddComponent<Button>();
                 else _thisButton = GetComponent<Button>();
             }
+            if (_thisTabSelectable == null) _thisTabSelectable = this.GetComponent<ITabSelectable>();
+            if (_tabManager == null) _tabManager = this.transform.parent.GetComponent<TabManager>();
         }
 
-        protected void OnEnable()
+        protected void Awake()
         {
-            _tabSelectorManager = this.transform.parent.GetComponent<TabManager>();
-            _thisTabSelectable = this.GetComponent<ITabSelectable>();
+            if (_thisTabSelectable == null) _thisTabSelectable = this.GetComponent<ITabSelectable>();
+            if (_tabManager == null) _tabManager = this.transform.parent.GetComponent<TabManager>();
+            _thisButton.transition = Selectable.Transition.None;
 
             _thisButton.onClick.AddListener(OnClick);
-
-            if (_tabSelectorManager.CurrentSelectedTab != null)
-            {
-                if (_tabSelectorManager.CurrentSelectedTab == this) this.TabState = TabState.Selected;
-                else this.TabState = TabState.Deselected;
-            }
-
-            if (this.TabState == TabState.Selected) _tabSelectorManager.UpdateTabState(this);
         }
 
-        #region Tab State Functions: Selected/Deselected
-        public void OnSelectedUpdate()
+        private void OnEnable()
         {
-            _thisTabSelectable?.Selected();
-        }
-        public void OnDeselectedUpdate()
-        {
-            _thisTabSelectable?.Deselected();
+            if (TabState == TabState.Selected) OnSelect();
+            if (TabState == TabState.Deselected) OnDeselect();
         }
         #endregion
 
+        #region ▶ Tab State Functions: Select/Deselect/OnClick
+        public void OnSelect()
+        {
+            TabState = TabState.Selected;
+            _thisTabSelectable?.Select();
+        }
+        public void OnDeselect()
+        {
+            TabState = TabState.Deselected;
+            _thisTabSelectable?.Deselect();
+        }
+
         public void OnClick()
         {
-            if (_thisTabSelectable != null) _thisTabSelectable.SelectingEvent();
-            _tabSelectorManager.UpdateTabState(this);
+            if (TabState == TabState.Deselected) _tabManager.TabSelected(this);
         }
+
+        public void ForceSelect() => OnClick();
+        #endregion   
 
     }
 

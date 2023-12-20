@@ -9,7 +9,9 @@ public class Test : MonoBehaviour
     [ShowIfBool("TestBool", false)] public int B;
 
     public EnumTest TestEnum;
-    [HideIfEnum("TestEnum", (int)EnumTest.A)] public string EnumA;
+    [HideIfEnum("TestEnum", (int)EnumTest.A)] 
+    [HideIfEnum("TestEnum", (int)EnumTest.C)] 
+    public string EnumA;
     [ShowIfEnum("TestEnum", (int)EnumTest.B)] public string EnumB;
 
     public GameObject TestNull;
