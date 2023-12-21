@@ -21,9 +21,15 @@ A better version of Unity's Button:
 - Familiar usage due to some properties are the same with Unity's button.
 ```
 
-## Usage Guide
+<div id=back><h2> Table Of Contents </h2></div>
+<a href="#pui-graphic"> 1. PUI - Graphic </a>
+<a href="#pui-graphic"> 1. PUI - Event </a>
+<a href="#pui-graphic"> 1. PUI - Mode </a>
 
+## Usage Guide
+<div id="pui-graphic">
 <h3><i> PUI - Graphic </i></h3>
+</div>
 
 ```
 Change, switch PUI graphic with familiar properties.
@@ -79,7 +85,9 @@ Change, switch PUI graphic with familiar properties.
  </p>
 </details>
 
+<div id="pui-event">
 <h3><i> PUI - Event </i></h3>
+</div>
 
 ```
 Invoke event assigned to PUI.
@@ -113,8 +121,9 @@ Invoke event assigned to PUI.
  </p>
 </details>
 
-
+<div id="pui-mode">
 <h3><i> PUI - Mode </i></h3>
+</div>
 
 ```
 Specific mode of PUI for different purposes.
