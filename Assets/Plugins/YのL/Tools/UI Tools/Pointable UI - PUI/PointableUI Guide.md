@@ -22,9 +22,9 @@ A better version of Unity's Button:
 ```
 
 <div id=back><h2> Table Of Contents </h2></div>
-<a href="#pui-graphic"> 1. PUI - Graphic </a>
-<a href="#pui-graphic"> 1. PUI - Event </a>
-<a href="#pui-graphic"> 1. PUI - Mode </a>
+<a href="#pui-graphic"> 1. PUI - Graphic </a><br>
+<a href="#pui-graphic"> 1. PUI - Event </a><br>
+<a href="#pui-graphic"> 1. PUI - Mode </a><br>
 
 ## Usage Guide
 <div id="pui-graphic">
