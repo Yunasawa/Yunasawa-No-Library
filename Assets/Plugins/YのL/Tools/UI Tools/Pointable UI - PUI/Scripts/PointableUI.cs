@@ -6,6 +6,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using YNL.Attribute;
+using YNL.Extension.Method;
 
 namespace YNL.Tools.UI
 {
@@ -21,36 +22,40 @@ namespace YNL.Tools.UI
         [Space()]
         [ShowIf("Mode", Value = PUIMode.IgnoreDeselect), BoxGroup("PUI Mode")] public string IgnoreDeselectName = "IgnoreDeselect";
         [ShowIf("Mode", Value = PUIMode.IgnoreDeselect), BoxGroup("PUI Mode")] public LayerMask IgnoreDeselectLayer;
+        [ShowIf("Mode", Value = PUIMode.IgnoreDeselect), BoxGroup("PUI Mode")] public bool DetectCoveredIgnoreUI;
+
+        [ShowIf("Mode", Value = PUIMode.HoverToSelect), BoxGroup("PUI Mode")] public bool DeselectOnExit;
         #endregion
 
         #region ▶ PUI Graphics
-        [BoxGroup("PUI Graphic")] public PUITransition Transition;
+        [Title("PUI Graphics")]
+        public PUITransition Transition;
         [Space(10)]
-        [HideIfEnum("Transition", (int)PUITransition.None), BoxGroup("PUI Graphic")]
-        [HideIfEnum("Transition", (int)PUITransition.Animation), BoxGroup("PUI Graphic")]
+        [HideIfEnum("Transition", (int)PUITransition.None)]
+        [HideIfEnum("Transition", (int)PUITransition.Animation)]
         public Image TargetGraphic;
         [Space()]
         private Color DefaultColor;
-        [ShowIf("Transition", Value = PUITransition.ColorTint), BoxGroup("PUI Graphic")] public Color NormalColor = new(1, 1, 1, 1);
-        [ShowIf("Transition", Value = PUITransition.ColorTint), BoxGroup("PUI Graphic")] public Color HighlightedColor = new(1, 1, 1, 1);
-        [ShowIf("Transition", Value = PUITransition.ColorTint), BoxGroup("PUI Graphic")] public Color PressedColor = new(0.65f, 0.65f, 0.65f, 1);
-        [ShowIf("Transition", Value = PUITransition.ColorTint), BoxGroup("PUI Graphic")] public Color SelectedColor = new(1, 1, 1, 1);
-        [ShowIf("Transition", Value = PUITransition.ColorTint), BoxGroup("PUI Graphic")] public Color DisabledColor = new(0.75f, 0.75f, 0.75f, 0.5f);
-        [ShowIf("Transition", Value = PUITransition.ColorTint), BoxGroup("PUI Graphic")] public float FadeDuration = 0.1f;
+        [ShowIf("Transition", Value = PUITransition.ColorTint)] public Color NormalColor = new(1, 1, 1, 1);
+        [ShowIf("Transition", Value = PUITransition.ColorTint)] public Color HighlightedColor = new(1, 1, 1, 1);
+        [ShowIf("Transition", Value = PUITransition.ColorTint)] public Color PressedColor = new(0.65f, 0.65f, 0.65f, 1);
+        [ShowIf("Transition", Value = PUITransition.ColorTint)] public Color SelectedColor = new(1, 1, 1, 1);
+        [ShowIf("Transition", Value = PUITransition.ColorTint)] public Color DisabledColor = new(0.75f, 0.75f, 0.75f, 0.5f);
+        [ShowIf("Transition", Value = PUITransition.ColorTint)] public float FadeDuration = 0.1f;
         [Space()]
-        [ShowIf("Transition", Value = PUITransition.SpriteSwap), BoxGroup("PUI Graphic")] public Sprite NormalSprite;
-        [ShowIf("Transition", Value = PUITransition.SpriteSwap), BoxGroup("PUI Graphic")] public Sprite HighlightedSprite;
-        [ShowIf("Transition", Value = PUITransition.SpriteSwap), BoxGroup("PUI Graphic")] public Sprite PressedSprite;
-        [ShowIf("Transition", Value = PUITransition.SpriteSwap), BoxGroup("PUI Graphic")] public Sprite SelectedSprite;
-        [ShowIf("Transition", Value = PUITransition.SpriteSwap), BoxGroup("PUI Graphic")] public Sprite DisabledSprite;
+        [ShowIf("Transition", Value = PUITransition.SpriteSwap)] public Sprite NormalSprite;
+        [ShowIf("Transition", Value = PUITransition.SpriteSwap)] public Sprite HighlightedSprite;
+        [ShowIf("Transition", Value = PUITransition.SpriteSwap)] public Sprite PressedSprite;
+        [ShowIf("Transition", Value = PUITransition.SpriteSwap)] public Sprite SelectedSprite;
+        [ShowIf("Transition", Value = PUITransition.SpriteSwap)] public Sprite DisabledSprite;
         [Space(10)]
-        [ShowIf("Transition", Value = PUITransition.Animation), BoxGroup("PUI Graphic")] public Animator _Animator;
+        [ShowIf("Transition", Value = PUITransition.Animation)] public Animator _Animator;
         [Space(10)]
-        [ShowIf("Transition", Value = PUITransition.Animation), BoxGroup("PUI Graphic")] public string NormalTrigger = "Normal";
-        [ShowIf("Transition", Value = PUITransition.Animation), BoxGroup("PUI Graphic")] public string HighlightedTrigger = "Highlighted";
-        [ShowIf("Transition", Value = PUITransition.Animation), BoxGroup("PUI Graphic")] public string PressedTrigger = "Pressed";
-        [ShowIf("Transition", Value = PUITransition.Animation), BoxGroup("PUI Graphic")] public string SelectedTrigger = "Selected";
-        [ShowIf("Transition", Value = PUITransition.Animation), BoxGroup("PUI Graphic")] public string DisabledTrigger = "Disabled";
+        [ShowIf("Transition", Value = PUITransition.Animation)] public string NormalTrigger = "Normal";
+        [ShowIf("Transition", Value = PUITransition.Animation)] public string HighlightedTrigger = "Highlighted";
+        [ShowIf("Transition", Value = PUITransition.Animation)] public string PressedTrigger = "Pressed";
+        [ShowIf("Transition", Value = PUITransition.Animation)] public string SelectedTrigger = "Selected";
+        [ShowIf("Transition", Value = PUITransition.Animation)] public string DisabledTrigger = "Disabled";
         #endregion
 
         #region ▶ PUI Event
@@ -82,12 +87,19 @@ namespace YNL.Tools.UI
         #region ▶ Editor Methods
         protected virtual void OnValidate()
         {
+            Button getButton;
+            if (GetComponent<Button>() != null)
+            {
+                getButton = GetComponent<Button>();
+                getButton.DestroyOnValidate();
+            }
+
             if (Transition == PUITransition.ColorTint || Transition == PUITransition.SpriteSwap)
             {
                 if (TargetGraphic == null)
                 {
                     TargetGraphic = GetComponent<Image>();
-                    if (TargetGraphic == null) Debug.Log($"<color=#FFE045><b>⚠ Warning: </b></color> Require <b><color=#00FF87>Image</color></b> component if PUI is in <i><b>Color Tint</b></i> or <i><b>Sprite Swap</b></i> transition mode.");
+                    if (TargetGraphic == null) MDebug.Warning("Require <b><color=#00FF87>Image</color></b> component if PUI is in <i><b>Color Tint</b></i> or <i><b>Sprite Swap</b></i> transition mode.");
                 }
                 else
                 {
@@ -95,7 +107,10 @@ namespace YNL.Tools.UI
 
                     if (Transition == PUITransition.ColorTint)
                     {
-                        if (NormalColor != Color.white) TargetGraphic.color = NormalColor;
+                        if (TargetGraphic.color != SelectedColor)
+                        {
+                            if (NormalColor != Color.white) TargetGraphic.color = NormalColor;
+                        }
                     }
                     if (Transition == PUITransition.SpriteSwap)
                     {
@@ -108,7 +123,7 @@ namespace YNL.Tools.UI
                 if (_Animator == null)
                 {
                     _Animator = GetComponent<Animator>();
-                    if (_Animator == null) Debug.Log($"<color=#FFE045><b>⚠ Warning: </b></color> Require <b><color=#00FF87>Animator</color></b> component if PUI is in <i><b>Animation</b></i> transition mode.");
+                    if (_Animator == null) MDebug.Warning("Require <b><color=#00FF87>Animator</color></b> component if PUI is in <i><b>Animation</b></i> transition mode.");
                 }
             }
         }
@@ -128,6 +143,12 @@ namespace YNL.Tools.UI
         #endregion
 
         #region ▶ PUI Handler Methods
+        /// <summary>
+        /// Used to force selecting the PUI via code, without clicking on it.
+        /// </summary>
+        public void ForceSelect() => OnSelect(new(EventSystem.current));
+        public void DetectIgnoreUI(bool activate) => DetectCoveredIgnoreUI = activate;
+
         public void OnSelect(BaseEventData eventData)
         {
             PUIInteractableHandler("OnSelect");
@@ -147,7 +168,8 @@ namespace YNL.Tools.UI
         {
             PUIInteractableHandler("OnDeselect");
 
-            if (RaycastUI.GetUIElement(IgnoreDeselectLayer) != null && Mode == PUIMode.IgnoreDeselect)
+            GameObject ignoreObject = RaycastUI.GetUIElement(IgnoreDeselectLayer, DetectCoveredIgnoreUI);
+            if (ignoreObject != null && ignoreObject != this.gameObject && Mode == PUIMode.IgnoreDeselect)
             {
                 StartCoroutine(ReselectDelayed(this.gameObject));
 
@@ -224,10 +246,18 @@ namespace YNL.Tools.UI
             {
                 if (eventData.selectedObject != this.gameObject) eventData.selectedObject = this.gameObject;
             }
-
-            if (Transition == PUITransition.ColorTint) TargetGraphic.color = HighlightedColor;
-            if (Transition == PUITransition.SpriteSwap) TargetGraphic.sprite = HighlightedSprite;
-            if (Transition == PUITransition.Animation) if (_Animator != null) _Animator.Play(HighlightedTrigger);
+            else
+            {
+                if (Transition == PUITransition.ColorTint)
+                {
+                    if (TargetGraphic.color != SelectedColor)
+                    {
+                        TargetGraphic.color = HighlightedColor;
+                    }
+                }
+                if (Transition == PUITransition.SpriteSwap) TargetGraphic.sprite = HighlightedSprite;
+                if (Transition == PUITransition.Animation) if (_Animator != null) _Animator.Play(HighlightedTrigger);
+            }
 
             PUIEventHandler("OnEnter", eventData);
         }
@@ -236,13 +266,16 @@ namespace YNL.Tools.UI
         {
             PUIInteractableHandler("OnExit");
 
-            if (Mode == PUIMode.HoverToSelect) StartCoroutine(ReselectDelayed(null));
+            if (Mode == PUIMode.HoverToSelect && DeselectOnExit) StartCoroutine(ReselectDelayed(null));
 
-            if (Transition == PUITransition.ColorTint) if (TargetGraphic.color != SelectedColor)
+            if (Transition == PUITransition.ColorTint)
+            {
+                if (TargetGraphic.color != SelectedColor)
                 {
                     if (NormalColor != Color.white) TargetGraphic.color = NormalColor;
                     else TargetGraphic.color = DefaultColor;
                 }
+            }
             if (Transition == PUITransition.SpriteSwap) if (TargetGraphic.sprite != SelectedSprite) TargetGraphic.sprite = NormalSprite;
             if (Transition == PUITransition.Animation) if (_Animator != null) _Animator.Play(NormalTrigger);
 

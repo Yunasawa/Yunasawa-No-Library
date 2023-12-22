@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine;
+using System.Xml.Linq;
 
 namespace YNL.Tools.UI
 {
@@ -8,17 +9,24 @@ namespace YNL.Tools.UI
     {
         /// <summary> Returns 'true' if we touched or hovering on Unity UI element. </summary>
         /// 
-        public static GameObject GetUIElement(int layer)
+        public static GameObject GetUIElement(int layer, bool detectIgnore)
         {
-            return IsPointerOverUI(GetEventSystemRaycastResults(), layer);
+            return IsPointerOverUI(GetEventSystemRaycastResults(), layer, detectIgnore);
         }
 
         /// <summary> Returns 'true' if we touched or hovering on Unity UI element. </summary>
-        public static GameObject IsPointerOverUI(List<RaycastResult> eventSystemRaysastResults, int layer)
+        public static GameObject IsPointerOverUI(List<RaycastResult> eventSystemRaysastResults, int layer, bool detectIgnore)
         {
-            foreach (var element in eventSystemRaysastResults)
+            if (!detectIgnore && eventSystemRaysastResults.Count > 0)
             {
-                if (element.gameObject.layer == layer) return element.gameObject;
+                if (eventSystemRaysastResults[0].gameObject.layer == layer) return eventSystemRaysastResults[0].gameObject;
+            }
+            else
+            {
+                foreach (var element in eventSystemRaysastResults)
+                {
+                    if (element.gameObject.layer == layer) return element.gameObject;
+                }
             }
             return null;
         }

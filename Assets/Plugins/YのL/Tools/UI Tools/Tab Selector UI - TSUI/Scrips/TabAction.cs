@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using YNL.Tools.UI;
 using TMPro;
 using Sirenix.OdinInspector;
-using YNL.Attribute;
-using System;
 using UnityEngine.Events;
+using YNL.Extension.Method;
 
 namespace YNL.Tools.UI
 {
@@ -113,7 +111,7 @@ namespace YNL.Tools.UI
         public Image Image;
         public Color SelectColor = Color.white;
         public Color DeselectColor = Color.white;
-        public float Duration = 0.25f;
+        public float Duration = 0.2f;
     }
 
     [System.Serializable]
@@ -122,7 +120,7 @@ namespace YNL.Tools.UI
         public TextMeshProUGUI TMP;
         public Color SelectColor = Color.white;
         public Color DeselectColor = Color.white;
-        public float Duration = 0.25f;
+        public float Duration = 0.2f;
     }
 
     [System.Serializable]
@@ -131,7 +129,7 @@ namespace YNL.Tools.UI
         public RectTransform Transform;
         public RectTransform SelectTransform;
         public RectTransform DeselectTransform;
-        public float Duration = 0.25f;
+        public float Duration = 0.2f;
     }
     public enum ETabEvent
     {

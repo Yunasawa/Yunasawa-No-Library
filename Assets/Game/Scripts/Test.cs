@@ -1,30 +1,40 @@
+using Sirenix.OdinInspector;
+using System;
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using YNL.Attribute;
+using YNL.Extension.Method;
 
 public class Test : MonoBehaviour
 {
-    public bool TestBool;
-    [HideIfBool("TestBool", true)] public int A;
-    [ShowIfBool("TestBool", false)] public int B;
+    public float countdownDuration = 120f;
+    public string CurrenTimeColon = "";
+    public string CurrenTimeLetter = "";
 
-    public EnumTest TestEnum;
-    [HideIfEnum("TestEnum", (int)EnumTest.A)] 
-    [HideIfEnum("TestEnum", (int)EnumTest.C)] 
-    public string EnumA;
-    [ShowIfEnum("TestEnum", (int)EnumTest.B)] public string EnumB;
+    [Button]
+    public void StartCount()
+    {
+        StartCoroutine(MTime.CountDown(countdownDuration, OnTick, OnCountdownEnd));
+    }
 
-    public GameObject TestNull;
-    [HideIfNull("TestNull", true)] public Color HideNull;
-    [HideIfNull("TestNull", false)] public Vector3 HideNotNull;
-    [ShowIfNull("TestNull", true)] public Vector3 ShowNull;
-    [ShowIfNull("TestNull", false)] public Vector3 ShowNotNull;
+    [Button]
+    public void StopCount()
+    {
+        StopAllCoroutines();
+        CurrenTimeColon = "";
+        CurrenTimeLetter = "";
+    }
 
+    private void OnTick(int currentTime)
+    {
+        CurrenTimeColon = currentTime.TimeFormat("00:00");
+        CurrenTimeLetter = currentTime.TimeFormat("hhmmss");
+    }
 
-}
+    private void OnCountdownEnd()
+    {
+        Debug.Log("Countdown completed!");
+    }
 
-[System.Serializable]
-public enum EnumTest
-{
-    A, B, C
 }

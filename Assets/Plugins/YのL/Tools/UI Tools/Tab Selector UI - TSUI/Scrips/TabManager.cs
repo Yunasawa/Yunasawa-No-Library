@@ -26,9 +26,16 @@ namespace YNL.Tools.UI
         [Button("Get All TSUI Buttons To Key")]
         public void GetAllTSUIButtonsToKey()
         {
+            Dictionary<TabButton, TabPage> tempDict = new();
+            foreach (var item in _tabSelectionPair) tempDict.Add(item.Key, item.Value);
             List<TabButton> tempList = this.GetComponentsInChildren<TabButton>().ToList();
+
             _tabSelectionPair.Clear();
-            foreach (var i in tempList) _tabSelectionPair.Add(i, null);
+            foreach (var i in tempList)
+            {
+                if (tempDict.ContainsKey(i)) _tabSelectionPair.Add(i, tempDict[i]);
+                else _tabSelectionPair.Add(i, null);
+            }
         }
         #endregion
 

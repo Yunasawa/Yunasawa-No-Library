@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using YNL.Extension.Method;
 
 namespace YNL.Tools.UI
 {
@@ -25,11 +26,7 @@ namespace YNL.Tools.UI
         {
             if (Label == "") Label = gameObject.name;
 
-            if (_thisButton == null)
-            {
-                if (GetComponent<Button>() == null) _thisButton = this.gameObject.AddComponent<Button>();
-                else _thisButton = GetComponent<Button>();
-            }
+            if (_thisButton == null) _thisButton = this.gameObject.GetOrAddComponent<Button>();
             if (_thisTabSelectable == null) _thisTabSelectable = this.GetComponent<ITabActionable>();
             if (_tabManager == null) _tabManager = this.transform.parent.GetComponent<TabManager>();
         }

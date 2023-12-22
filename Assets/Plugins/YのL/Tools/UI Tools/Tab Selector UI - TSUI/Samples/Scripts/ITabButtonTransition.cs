@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using YNL.Tools.UI;
+using YNL.Extension.Method;
 
 public class ITabButtonTransition : MonoBehaviour, ITabActionable
 {
