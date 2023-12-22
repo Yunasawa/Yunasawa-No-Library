@@ -166,3 +166,17 @@ Specific mode of PUI for different purposes.
     <li> Usage: Just for clicking purpose, not select after that. </li>
   </ul>
 </details>
+
+## Updating Log
+
+<h3> ✅ Error: Clicking on a PUI with layer of "Ignore Deselect" </h3>
+
+When an PUI (mode set to "Ignore Deselect") is selected then click on another PUI (also in "Ignore Deselect" mode) layered "Ignore Deselect", 2 PUI will be selected and deselected repeatedly.
+
+Fixed: The PUI selected will still be selected.
+
+<h3> ✅ Error: Clicking on a UI layered "Ignore Deselect" covered by a UI not layered "Ignore Deselect" </h3>
+
+When an PUI (mode set to "Ignore Deselect") is selected, then click on a UI (layered "Ignore Deselect") lies under a UI (not layered "Ignore Deselect"), the PUI will not be deselected.
+
+Fixed: Add a toggle to allow PUI to detect if clicking on a UI (layered "Ignore Deselect") covered by another UI or not.
