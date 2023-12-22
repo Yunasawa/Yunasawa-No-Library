@@ -21,9 +21,15 @@ A better version of Unity's Button:
 - Familiar usage due to some properties are the same with Unity's button.
 ```
 
-## Usage Guide
+<div id=back><h2> Table Of Contents </h2></div>
+<a href="#pui-graphic"> 1. PUI - Graphic </a><br>
+<a href="#pui-graphic"> 1. PUI - Event </a><br>
+<a href="#pui-graphic"> 1. PUI - Mode </a><br>
 
-<h3><i> PUI - Graphic </i></h3>
+## Usage Guide
+<div id="pui-graphic">
+<h3><i> PUI - Graphic </i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <a href="#back">Back</a></h3>
+</div>
 
 ```
 Change, switch PUI graphic with familiar properties.
@@ -79,7 +85,9 @@ Change, switch PUI graphic with familiar properties.
  </p>
 </details>
 
-<h3><i> PUI - Event </i></h3>
+<div id="pui-event">
+<h3><i> PUI - Event </i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <a href="#back">Back</a></h3>
+</div>
 
 ```
 Invoke event assigned to PUI.
@@ -113,8 +121,11 @@ Invoke event assigned to PUI.
  </p>
 </details>
 
+<b> <i>Note:</i> PointableUI.ForceSelect(): </b> Force selecting the PUI via code, without clicking on it. 
 
-<h3><i> PUI - Mode </i></h3>
+<div id="pui-mode">
+<h3><i> PUI - Mode </i>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <a href="#back">Back</a></h3>
+</div>
 
 ```
 Specific mode of PUI for different purposes.
@@ -155,3 +166,17 @@ Specific mode of PUI for different purposes.
     <li> Usage: Just for clicking purpose, not select after that. </li>
   </ul>
 </details>
+
+## Updating Log
+
+<h3> ✅ Error: Clicking on a PUI with layer of "Ignore Deselect" </h3>
+
+When an PUI (mode set to "Ignore Deselect") is selected then click on another PUI (also in "Ignore Deselect" mode) layered "Ignore Deselect", 2 PUI will be selected and deselected repeatedly.
+
+Fixed: The PUI selected will still be selected.
+
+<h3> ✅ Error: Clicking on a UI layered "Ignore Deselect" covered by a UI not layered "Ignore Deselect" </h3>
+
+When an PUI (mode set to "Ignore Deselect") is selected, then click on a UI (layered "Ignore Deselect") lies under a UI (not layered "Ignore Deselect"), the PUI will not be deselected.
+
+Fixed: Add a toggle to allow PUI to detect if clicking on a UI (layered "Ignore Deselect") covered by another UI or not.

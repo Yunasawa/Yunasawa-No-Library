@@ -12,7 +12,7 @@
 
 This library contains several extension features of Plugins, Tools, Constants, Methods, Patterns that will make your life easier!!!
 
-- This is almost written in Unity 2022.3.14f1, but it can work fine on older or higher version. Please feedback if there is any bug/error at email: Yunasawa200@gmail.com, I will response as soon as I can.
+- This is almost written in Unity 2022.3.14f1, but it can work fine on older or higher version. Please feedback if there is any bug/error at email: yunasawa200@gmail.com, I will response as soon as I can.
 - Not all the features created by me, I will cite their information, support them if possible.  
 - Almost all scripts contains Odin-Inspector attributes, you may need to import Odin package before use those, or you just need to fix all the missing attributes in the scripts (That will make component not pretty anymore).
 
