@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -102,5 +103,24 @@ namespace YNL.Extension.Method
         /// </summary>
         public static bool HasComponent<T>(this GameObject gameObject) where T : Component
             => gameObject.GetComponent<T>() != null;
+    }
+
+    public static class MCoroutine
+    {
+        /// <summary>
+        /// Start a coroutine.
+        /// </summary>
+        public static Coroutine StartACoroutine(this MonoBehaviour mono, IEnumerator enumerator)
+            => mono.StartCoroutine(enumerator);
+
+        /// <summary>
+        /// Stop a coroutine.
+        /// </summary>
+        public static void StopACoroutine(this MonoBehaviour mono, Coroutine coroutine)
+        {
+            if (coroutine.IsNull()) return;
+            mono.StopCoroutine(coroutine);
+            coroutine = null;
+        }
     }
 }

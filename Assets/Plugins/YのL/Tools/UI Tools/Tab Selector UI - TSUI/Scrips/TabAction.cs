@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
+using YNL.Extension.Objects;
 using Sirenix.OdinInspector;
 using UnityEngine.Events;
 using YNL.Extension.Method;
+using YNL.Extension.Constant;
 
 namespace YNL.Tools.UI
 {
@@ -21,22 +21,22 @@ namespace YNL.Tools.UI
 
         #region ▶ Tab Transition
         [Title("Tab Transition")]
-        [SerializeField] private ETabTransition _tabTransition = ETabTransition.ColorAndTransform;
+        [SerializeField] private EUITransition _tabTransition = EUITransition.ColorAndTransform;
 
         [Title("Color")]
-        [ShowIf("_tabTransition", Value = ETabTransition.ColorAndTransform), SerializeField]
+        [ShowIf("_tabTransition", Value = EUITransition.ColorAndTransform), SerializeField]
         private List<ImageTransitionColor> _imageTransition = new();
-        [ShowIf("_tabTransition", Value = ETabTransition.ColorAndTransform), SerializeField]
+        [ShowIf("_tabTransition", Value = EUITransition.ColorAndTransform), SerializeField]
         private List<TMPTransitionColor> _tmpTransition = new();
 
         [Title("Transform")]
-        [ShowIf("_tabTransition", Value = ETabTransition.ColorAndTransform)]
-        [SerializeField] private List<ObjectTransitionPosition> _transformTransition = new();
+        [ShowIf("_tabTransition", Value = EUITransition.ColorAndTransform)]
+        [SerializeField] private List<RectTransitionTransform> _transformTransition = new();
 
-        [Title("Animation")]
         private Animator _animator;
-        [ShowIf("_tabTransition", Value = ETabTransition.Animation), SerializeField] private string _selectAnimation = "Select";
-        [ShowIf("_tabTransition", Value = ETabTransition.Animation), SerializeField] private string _deselectAnimation = "Deselect";
+        [Title("Animation")]
+        [ShowIf("_tabTransition", Value = EUITransition.Animation), SerializeField] private string _selectAnimation = "Select";
+        [ShowIf("_tabTransition", Value = EUITransition.Animation), SerializeField] private string _deselectAnimation = "Deselect";
         #endregion
 
         #endregion
@@ -44,7 +44,7 @@ namespace YNL.Tools.UI
         #region ▶ Methods
         private void OnValidate()
         {
-            if (_tabTransition == ETabTransition.Animation)
+            if (_tabTransition == Extension.Constant.EUITransition.Animation)
             {
                 if (GetComponent<Animator>().IsNull()) MDebug.Warning("This object must have Animator component to use Animation transition!");
                 else if (_animator.IsNull()) _animator = GetComponent<Animator>();
@@ -55,23 +55,23 @@ namespace YNL.Tools.UI
         {
             if (_tabEvent == ETabEvent.Invoke) OnSelect?.Invoke();
 
-            if (_tabTransition == ETabTransition.ColorAndTransform)
+            if (_tabTransition == Extension.Constant.EUITransition.ColorAndTransform)
             {
                 foreach (var transition in _imageTransition)
                 {
-                    transition.Image?.TweenColor(transition.Image.color, transition.SelectColor, transition.Duration);
+                    transition.Image?.TweenColor(transition.Image.color, transition.Select, transition.Duration);
                 }
                 foreach (var transition in _tmpTransition)
                 {
-                    transition.TMP?.TweenColor(transition.TMP.color, transition.SelectColor, transition.Duration);
+                    transition.TMP?.TweenColor(transition.TMP.color, transition.Select, transition.Duration);
                 }
                 foreach (var transition in _transformTransition)
                 {
-                    transition.Transform?.TweenRectTransform(transition.SelectTransform, transition.Duration);
+                    transition.Transform?.TweenRectTransform(transition.Select, transition.Duration);
                 }
             }
 
-            else if (_tabTransition == ETabTransition.Animation)
+            else if (_tabTransition == Extension.Constant.EUITransition.Animation)
             {
                 _animator.Play(_selectAnimation);
             }
@@ -81,23 +81,23 @@ namespace YNL.Tools.UI
         {
             if (_tabEvent == ETabEvent.Invoke) OnDeselect?.Invoke();
 
-            if (_tabTransition == ETabTransition.ColorAndTransform)
+            if (_tabTransition == Extension.Constant.EUITransition.ColorAndTransform)
             {
                 foreach (var transition in _imageTransition)
                 {
-                    transition.Image?.TweenColor(transition.Image.color, transition.DeselectColor, transition.Duration);
+                    transition.Image?.TweenColor(transition.Image.color, transition.Deselect, transition.Duration);
                 }
                 foreach (var transition in _tmpTransition)
                 {
-                    transition.TMP?.TweenColor(transition.TMP.color, transition.DeselectColor, transition.Duration);
+                    transition.TMP?.TweenColor(transition.TMP.color, transition.Deselect, transition.Duration);
                 }
                 foreach (var transition in _transformTransition)
                 {
-                    transition.Transform?.TweenRectTransform(transition.DeselectTransform, transition.Duration);
+                    transition.Transform?.TweenRectTransform(transition.Deselect, transition.Duration);
                 }
             }
 
-            else if (_tabTransition == ETabTransition.Animation)
+            else if (_tabTransition == Extension.Constant.EUITransition.Animation)
             {
                 _animator.Play(_deselectAnimation);
             }
@@ -105,39 +105,8 @@ namespace YNL.Tools.UI
         #endregion
     }
 
-    [System.Serializable]
-    public class ImageTransitionColor
-    {
-        public Image Image;
-        public Color SelectColor = Color.white;
-        public Color DeselectColor = Color.white;
-        public float Duration = 0.2f;
-    }
-
-    [System.Serializable]
-    public class TMPTransitionColor
-    {
-        public TextMeshProUGUI TMP;
-        public Color SelectColor = Color.white;
-        public Color DeselectColor = Color.white;
-        public float Duration = 0.2f;
-    }
-
-    [System.Serializable]
-    public class ObjectTransitionPosition
-    {
-        public RectTransform Transform;
-        public RectTransform SelectTransform;
-        public RectTransform DeselectTransform;
-        public float Duration = 0.2f;
-    }
     public enum ETabEvent
     {
         None, Invoke
-    }
-
-    public enum ETabTransition
-    {
-        None, ColorAndTransform, Animation
     }
 }

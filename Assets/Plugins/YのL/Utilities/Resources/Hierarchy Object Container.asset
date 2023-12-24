@@ -15,8 +15,10 @@ MonoBehaviour:
   ConfigObject:
     keys:
     - Canvas
+    - EventSystem
     values:
     - {fileID: 3716242543294922758, guid: 08d890864802ba34996be805d13461f9, type: 3}
+    - {fileID: 1114251262948962749, guid: f6a6b04bcd87736439455b61440eedc2, type: 3}
   ObjectList:
     keys:
     - Switch UI

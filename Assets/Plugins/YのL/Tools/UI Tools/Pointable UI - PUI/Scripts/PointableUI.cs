@@ -1,12 +1,12 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using YNL.Attribute;
 using YNL.Extension.Method;
+using YNL.Extension.Constant;
 
 namespace YNL.Tools.UI
 {
@@ -29,33 +29,33 @@ namespace YNL.Tools.UI
 
         #region ▶ PUI Graphics
         [Title("PUI Graphics")]
-        public PUITransition Transition;
+        public EUITransition Transition;
         [Space(10)]
-        [HideIfEnum("Transition", (int)PUITransition.None)]
-        [HideIfEnum("Transition", (int)PUITransition.Animation)]
+        [HideIfEnum("Transition", (int)EUITransition.None)]
+        [HideIfEnum("Transition", (int)EUITransition.Animation)]
         public Image TargetGraphic;
         [Space()]
         private Color DefaultColor;
-        [ShowIf("Transition", Value = PUITransition.ColorTint)] public Color NormalColor = new(1, 1, 1, 1);
-        [ShowIf("Transition", Value = PUITransition.ColorTint)] public Color HighlightedColor = new(1, 1, 1, 1);
-        [ShowIf("Transition", Value = PUITransition.ColorTint)] public Color PressedColor = new(0.65f, 0.65f, 0.65f, 1);
-        [ShowIf("Transition", Value = PUITransition.ColorTint)] public Color SelectedColor = new(1, 1, 1, 1);
-        [ShowIf("Transition", Value = PUITransition.ColorTint)] public Color DisabledColor = new(0.75f, 0.75f, 0.75f, 0.5f);
-        [ShowIf("Transition", Value = PUITransition.ColorTint)] public float FadeDuration = 0.1f;
+        [ShowIf("Transition", Value = EUITransition.Color)] public Color NormalColor = new(1, 1, 1, 1);
+        [ShowIf("Transition", Value = EUITransition.Color)] public Color HighlightedColor = new(1, 1, 1, 1);
+        [ShowIf("Transition", Value = EUITransition.Color)] public Color PressedColor = new(0.65f, 0.65f, 0.65f, 1);
+        [ShowIf("Transition", Value = EUITransition.Color)] public Color SelectedColor = new(1, 1, 1, 1);
+        [ShowIf("Transition", Value = EUITransition.Color)] public Color DisabledColor = new(0.75f, 0.75f, 0.75f, 0.5f);
+        [ShowIf("Transition", Value = EUITransition.Color)] public float FadeDuration = 0.1f;
         [Space()]
-        [ShowIf("Transition", Value = PUITransition.SpriteSwap)] public Sprite NormalSprite;
-        [ShowIf("Transition", Value = PUITransition.SpriteSwap)] public Sprite HighlightedSprite;
-        [ShowIf("Transition", Value = PUITransition.SpriteSwap)] public Sprite PressedSprite;
-        [ShowIf("Transition", Value = PUITransition.SpriteSwap)] public Sprite SelectedSprite;
-        [ShowIf("Transition", Value = PUITransition.SpriteSwap)] public Sprite DisabledSprite;
+        [ShowIf("Transition", Value = EUITransition.SpriteSwap)] public Sprite NormalSprite;
+        [ShowIf("Transition", Value = EUITransition.SpriteSwap)] public Sprite HighlightedSprite;
+        [ShowIf("Transition", Value = EUITransition.SpriteSwap)] public Sprite PressedSprite;
+        [ShowIf("Transition", Value = EUITransition.SpriteSwap)] public Sprite SelectedSprite;
+        [ShowIf("Transition", Value = EUITransition.SpriteSwap)] public Sprite DisabledSprite;
         [Space(10)]
-        [ShowIf("Transition", Value = PUITransition.Animation)] public Animator _Animator;
+        [ShowIf("Transition", Value = EUITransition.Animation)] public Animator _Animator;
         [Space(10)]
-        [ShowIf("Transition", Value = PUITransition.Animation)] public string NormalTrigger = "Normal";
-        [ShowIf("Transition", Value = PUITransition.Animation)] public string HighlightedTrigger = "Highlighted";
-        [ShowIf("Transition", Value = PUITransition.Animation)] public string PressedTrigger = "Pressed";
-        [ShowIf("Transition", Value = PUITransition.Animation)] public string SelectedTrigger = "Selected";
-        [ShowIf("Transition", Value = PUITransition.Animation)] public string DisabledTrigger = "Disabled";
+        [ShowIf("Transition", Value = EUITransition.Animation)] public string NormalTrigger = "Normal";
+        [ShowIf("Transition", Value = EUITransition.Animation)] public string HighlightedTrigger = "Highlighted";
+        [ShowIf("Transition", Value = EUITransition.Animation)] public string PressedTrigger = "Pressed";
+        [ShowIf("Transition", Value = EUITransition.Animation)] public string SelectedTrigger = "Selected";
+        [ShowIf("Transition", Value = EUITransition.Animation)] public string DisabledTrigger = "Disabled";
         #endregion
 
         #region ▶ PUI Event
@@ -94,7 +94,7 @@ namespace YNL.Tools.UI
                 getButton.DestroyOnValidate();
             }
 
-            if (Transition == PUITransition.ColorTint || Transition == PUITransition.SpriteSwap)
+            if (Transition == EUITransition.Color || Transition == EUITransition.SpriteSwap)
             {
                 if (TargetGraphic == null)
                 {
@@ -105,20 +105,20 @@ namespace YNL.Tools.UI
                 {
                     DefaultColor = TargetGraphic.color;
 
-                    if (Transition == PUITransition.ColorTint)
+                    if (Transition == EUITransition.Color)
                     {
                         if (TargetGraphic.color != SelectedColor)
                         {
                             if (NormalColor != Color.white) TargetGraphic.color = NormalColor;
                         }
                     }
-                    if (Transition == PUITransition.SpriteSwap)
+                    if (Transition == EUITransition.SpriteSwap)
                     {
                         if (NormalSprite != null) TargetGraphic.sprite = NormalSprite;
                     }
                 }
             }
-            if (Transition == PUITransition.Animation)
+            if (Transition == EUITransition.Animation)
             {
                 if (_Animator == null)
                 {
@@ -130,13 +130,13 @@ namespace YNL.Tools.UI
 
         private void OnEnable()
         {
-            if (Transition == PUITransition.ColorTint || Transition == PUITransition.SpriteSwap)
+            if (Transition == EUITransition.Color || Transition == EUITransition.SpriteSwap)
             {
                 if (TargetGraphic == null) TargetGraphic = this.GetComponent<Image>();
             }
-            if (Transition == PUITransition.ColorTint) if (TargetGraphic != null) TargetGraphic.color = NormalColor;
-            if (Transition == PUITransition.SpriteSwap) if (TargetGraphic != null) TargetGraphic.sprite = NormalSprite;
-            if (Transition == PUITransition.Animation) if (_Animator != null) _Animator.Play(NormalTrigger);
+            if (Transition == EUITransition.Color) if (TargetGraphic != null) TargetGraphic.color = NormalColor;
+            if (Transition == EUITransition.SpriteSwap) if (TargetGraphic != null) TargetGraphic.sprite = NormalSprite;
+            if (Transition == EUITransition.Animation) if (_Animator != null) _Animator.Play(NormalTrigger);
 
             IgnoreDeselectLayer = LayerMask.NameToLayer(IgnoreDeselectName);
         }
@@ -153,9 +153,9 @@ namespace YNL.Tools.UI
         {
             PUIInteractableHandler("OnSelect");
 
-            if (Transition == PUITransition.ColorTint) TargetGraphic.color = SelectedColor;
-            if (Transition == PUITransition.SpriteSwap) TargetGraphic.sprite = SelectedSprite;
-            if (Transition == PUITransition.Animation) if (_Animator != null) _Animator.Play(SelectedTrigger);
+            if (Transition == EUITransition.Color) TargetGraphic.color = SelectedColor;
+            if (Transition == EUITransition.SpriteSwap) TargetGraphic.sprite = SelectedSprite;
+            if (Transition == EUITransition.Animation) if (_Animator != null) _Animator.Play(SelectedTrigger);
 
             if (eventData.selectedObject != this.gameObject) eventData.selectedObject = this.gameObject;
 
@@ -173,19 +173,19 @@ namespace YNL.Tools.UI
             {
                 StartCoroutine(ReselectDelayed(this.gameObject));
 
-                if (Transition == PUITransition.ColorTint) TargetGraphic.color = SelectedColor;
-                if (Transition == PUITransition.SpriteSwap) TargetGraphic.sprite = SelectedSprite;
-                if (Transition == PUITransition.Animation) if (_Animator != null) _Animator.Play(SelectedTrigger);
+                if (Transition == EUITransition.Color) TargetGraphic.color = SelectedColor;
+                if (Transition == EUITransition.SpriteSwap) TargetGraphic.sprite = SelectedSprite;
+                if (Transition == EUITransition.Animation) if (_Animator != null) _Animator.Play(SelectedTrigger);
                 return;
             }
 
-            if (Transition == PUITransition.ColorTint)
+            if (Transition == EUITransition.Color)
             {
                 if (NormalColor != Color.white) TargetGraphic.color = NormalColor;
                 else TargetGraphic.color = DefaultColor;
             }
-            if (Transition == PUITransition.SpriteSwap) TargetGraphic.sprite = NormalSprite;
-            if (Transition == PUITransition.Animation) if (_Animator != null) _Animator.Play(NormalTrigger);
+            if (Transition == EUITransition.SpriteSwap) TargetGraphic.sprite = NormalSprite;
+            if (Transition == EUITransition.Animation) if (_Animator != null) _Animator.Play(NormalTrigger);
 
             _isSelected = false;
 
@@ -200,13 +200,13 @@ namespace YNL.Tools.UI
 
             if (Mode == PUIMode.OnlyClickButton)
             {
-                if (Transition == PUITransition.ColorTint)
+                if (Transition == EUITransition.Color)
                 {
                     if (NormalColor != Color.white) TargetGraphic.color = NormalColor;
                     else TargetGraphic.color = DefaultColor;
                 }
-                if (Transition == PUITransition.SpriteSwap) TargetGraphic.sprite = NormalSprite;
-                if (Transition == PUITransition.Animation) if (_Animator != null) _Animator.Play(NormalTrigger);
+                if (Transition == EUITransition.SpriteSwap) TargetGraphic.sprite = NormalSprite;
+                if (Transition == EUITransition.Animation) if (_Animator != null) _Animator.Play(NormalTrigger);
                 PUIEventHandler("OnClick", eventData);
                 return;
             }
@@ -222,9 +222,9 @@ namespace YNL.Tools.UI
             if (Mode == PUIMode.HoverToSelect) return;
 
             if (_isSelected) return;
-            if (Transition == PUITransition.ColorTint) TargetGraphic.color = PressedColor;
-            if (Transition == PUITransition.SpriteSwap) TargetGraphic.sprite = PressedSprite;
-            if (Transition == PUITransition.Animation) if (_Animator != null) _Animator.Play(PressedTrigger);
+            if (Transition == EUITransition.Color) TargetGraphic.color = PressedColor;
+            if (Transition == EUITransition.SpriteSwap) TargetGraphic.sprite = PressedSprite;
+            if (Transition == EUITransition.Animation) if (_Animator != null) _Animator.Play(PressedTrigger);
 
             PUIEventHandler("OnDown", eventData);
         }
@@ -248,15 +248,15 @@ namespace YNL.Tools.UI
             }
             else
             {
-                if (Transition == PUITransition.ColorTint)
+                if (Transition == EUITransition.Color)
                 {
                     if (TargetGraphic.color != SelectedColor)
                     {
                         TargetGraphic.color = HighlightedColor;
                     }
                 }
-                if (Transition == PUITransition.SpriteSwap) TargetGraphic.sprite = HighlightedSprite;
-                if (Transition == PUITransition.Animation) if (_Animator != null) _Animator.Play(HighlightedTrigger);
+                if (Transition == EUITransition.SpriteSwap) TargetGraphic.sprite = HighlightedSprite;
+                if (Transition == EUITransition.Animation) if (_Animator != null) _Animator.Play(HighlightedTrigger);
             }
 
             PUIEventHandler("OnEnter", eventData);
@@ -268,7 +268,7 @@ namespace YNL.Tools.UI
 
             if (Mode == PUIMode.HoverToSelect && DeselectOnExit) StartCoroutine(ReselectDelayed(null));
 
-            if (Transition == PUITransition.ColorTint)
+            if (Transition == EUITransition.Color)
             {
                 if (TargetGraphic.color != SelectedColor)
                 {
@@ -276,8 +276,8 @@ namespace YNL.Tools.UI
                     else TargetGraphic.color = DefaultColor;
                 }
             }
-            if (Transition == PUITransition.SpriteSwap) if (TargetGraphic.sprite != SelectedSprite) TargetGraphic.sprite = NormalSprite;
-            if (Transition == PUITransition.Animation) if (_Animator != null) _Animator.Play(NormalTrigger);
+            if (Transition == EUITransition.SpriteSwap) if (TargetGraphic.sprite != SelectedSprite) TargetGraphic.sprite = NormalSprite;
+            if (Transition == EUITransition.Animation) if (_Animator != null) _Animator.Play(NormalTrigger);
 
             PUIEventHandler("OnExit", eventData);
         }
@@ -341,11 +341,6 @@ namespace YNL.Tools.UI
 
         #endregion
         #endregion
-    }
-
-    public enum PUITransition
-    {
-        None, ColorTint, SpriteSwap, Animation
     }
 
     public enum PUIMode

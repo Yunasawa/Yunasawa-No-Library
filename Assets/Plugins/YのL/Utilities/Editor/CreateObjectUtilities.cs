@@ -1,9 +1,11 @@
 ﻿// Link: https://www.youtube.com/watch?v=1uqrSONpXkM&ab_channel=Andrew
 
 using System;
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using YNL.Extension.Method;
 
 public static class CreateObjectUtilities
@@ -47,8 +49,23 @@ public static class CreateObjectUtilities
         {
             if (gameObject.HasComponent<CanvasRenderer>())
             {
-                Canvas canvas = CreateObjectUtilities.CreateConfig("Canvas").GetComponent<Canvas>();
-                gameObject.transform.parent = canvas.transform;
+                Canvas canvas;
+
+                canvas = GameObject.FindObjectOfType<Canvas>();
+                if (!canvas.IsNull())
+                {
+                    gameObject.transform.parent = canvas.transform;
+                }
+                else
+                {
+                    canvas = CreateObjectUtilities.CreateConfig("Canvas").GetComponent<Canvas>();
+                    gameObject.transform.parent = canvas.transform;
+                }
+                if (GameObject.FindObjectOfType<EventSystem>().IsNull())
+                {
+                    GameObject eventSystem = CreateObjectUtilities.CreateConfig("EventSystem");
+                    eventSystem.transform.parent = null;
+                }
             }
         }
         RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
