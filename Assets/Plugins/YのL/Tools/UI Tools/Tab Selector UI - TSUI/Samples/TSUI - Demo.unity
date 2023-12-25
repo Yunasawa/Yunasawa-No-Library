@@ -349,21 +349,21 @@ MonoBehaviour:
   OnDeselect:
     m_PersistentCalls:
       m_Calls: []
-  _tabTransition: 1
+  _tabTransition: 3
   _imageTransition:
   - Image: {fileID: 178567147}
-    SelectColor: {r: 1, g: 0.7528302, b: 0.7528302, a: 1}
-    DeselectColor: {r: 0.5018867, g: 0, b: 0, a: 1}
+    Select: {r: 1, g: 1, b: 1, a: 1}
+    Deselect: {r: 1, g: 1, b: 1, a: 1}
     Duration: 0.2
   _tmpTransition:
   - TMP: {fileID: 1680197427}
-    SelectColor: {r: 0.3962264, g: 0, b: 0, a: 1}
-    DeselectColor: {r: 1, g: 0.76792455, b: 0.76792455, a: 1}
+    Select: {r: 1, g: 1, b: 1, a: 1}
+    Deselect: {r: 1, g: 1, b: 1, a: 1}
     Duration: 0.2
   _transformTransition:
   - Transform: {fileID: 1680197426}
-    SelectTransform: {fileID: 643214714}
-    DeselectTransform: {fileID: 2036908310}
+    Select: {fileID: 0}
+    Deselect: {fileID: 0}
     Duration: 0.2
   _selectAnimation: Select
   _deselectAnimation: Deselect
@@ -498,18 +498,18 @@ MonoBehaviour:
   _tabTransition: 1
   _imageTransition:
   - Image: {fileID: 471524292}
-    SelectColor: {r: 1, g: 0.7528302, b: 0.7528302, a: 1}
-    DeselectColor: {r: 0.5018867, g: 0, b: 0, a: 1}
+    Select: {r: 1, g: 1, b: 1, a: 1}
+    Deselect: {r: 1, g: 1, b: 1, a: 1}
     Duration: 0.2
   _tmpTransition:
   - TMP: {fileID: 1069990321}
-    SelectColor: {r: 0.3962264, g: 0, b: 0, a: 1}
-    DeselectColor: {r: 1, g: 0.76792455, b: 0.76792455, a: 1}
+    Select: {r: 1, g: 1, b: 1, a: 1}
+    Deselect: {r: 1, g: 1, b: 1, a: 1}
     Duration: 0.2
   _transformTransition:
   - Transform: {fileID: 1069990320}
-    SelectTransform: {fileID: 278530159}
-    DeselectTransform: {fileID: 766272958}
+    Select: {fileID: 0}
+    Deselect: {fileID: 0}
     Duration: 0.2
   _selectAnimation: Select
   _deselectAnimation: Deselect
@@ -1993,18 +1993,18 @@ MonoBehaviour:
   _tabTransition: 1
   _imageTransition:
   - Image: {fileID: 1756069404}
-    SelectColor: {r: 1, g: 0.7528302, b: 0.7528302, a: 1}
-    DeselectColor: {r: 0.5018867, g: 0, b: 0, a: 1}
+    Select: {r: 1, g: 1, b: 1, a: 1}
+    Deselect: {r: 1, g: 1, b: 1, a: 1}
     Duration: 0.2
   _tmpTransition:
   - TMP: {fileID: 524587826}
-    SelectColor: {r: 0.3962264, g: 0, b: 0, a: 1}
-    DeselectColor: {r: 1, g: 0.76792455, b: 0.76792455, a: 1}
+    Select: {r: 1, g: 1, b: 1, a: 1}
+    Deselect: {r: 1, g: 1, b: 1, a: 1}
     Duration: 0.2
   _transformTransition:
   - Transform: {fileID: 524587825}
-    SelectTransform: {fileID: 514629413}
-    DeselectTransform: {fileID: 896396069}
+    Select: {fileID: 0}
+    Deselect: {fileID: 0}
     Duration: 0.2
   _selectAnimation: Select
   _deselectAnimation: Deselect

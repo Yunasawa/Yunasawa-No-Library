@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -121,6 +122,11 @@ namespace YNL.Extension.Method
             if (coroutine.IsNull()) return;
             mono.StopCoroutine(coroutine);
             coroutine = null;
+        }
+
+        public static void StopCoroutines(this MonoBehaviour mono, List<Coroutine> list)
+        {
+            foreach (var coroutine in list) mono.StopACoroutine(coroutine);
         }
     }
 }

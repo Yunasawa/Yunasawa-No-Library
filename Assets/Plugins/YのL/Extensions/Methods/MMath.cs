@@ -128,6 +128,12 @@ namespace YNL.Extension.Method
         /// </summary>
         public static Vector3 Vector3Random(this Vector3 point, float x, float y)
             => new Vector3(point.x + UnityEngine.Random.Range(x, y), point.y + UnityEngine.Random.Range(x, y), point.z + UnityEngine.Random.Range(x, y));
+
+        /// <summary>
+        /// Make a division of two Vector3s.
+        /// </summary>
+        public static Vector3 DividedBy(this Vector3 vector1, Vector3 vector2)
+            => new(vector1.x / vector2.x, vector1.y / vector2.y, vector1.z / vector2.z);
         #endregion
 
         #region 📐 Set / Add Vector

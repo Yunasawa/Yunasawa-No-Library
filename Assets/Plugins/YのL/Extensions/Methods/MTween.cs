@@ -69,6 +69,30 @@ namespace YNL.Extension.Method
         {
             return mono.StartCoroutine(MTweenCoroutine.AnchoredPositionCoroutine(rectTransform, targetPosition, duration));
         }
+
+        /// <summary>
+        /// Make a tweening transition for RectTransform's localRotation.
+        /// </summary>
+        public static Coroutine TweenRotation(this RectTransform rectTransform, Vector3 target, float duration)
+        {
+            return rectTransform.GetComponent<MonoBehaviour>()?.StartCoroutine(MTweenCoroutine.RotationCoroutine(rectTransform, target, duration));
+        }
+        public static Coroutine TweenRotation(this MonoBehaviour mono, RectTransform rectTransform, Vector3 target, float duration)
+        {
+            return mono.StartCoroutine(MTweenCoroutine.RotationCoroutine(rectTransform, target, duration));
+        }
+
+        /// <summary>
+        /// Make a tweening transition for RectTransform's localScale.
+        /// </summary>
+        public static Coroutine TweenScale(this RectTransform rectTransform, Vector3 target, float duration)
+        {
+            return rectTransform.GetComponent<MonoBehaviour>()?.StartCoroutine(MTweenCoroutine.ScaleCoroutine(rectTransform, target, duration));
+        }
+        public static Coroutine TweenScale(this MonoBehaviour mono, RectTransform rectTransform, Vector3 target, float duration)
+        {
+            return mono.StartCoroutine(MTweenCoroutine.ScaleCoroutine(rectTransform, target, duration));
+        }
     }
 
     public static class MTweenCoroutine
@@ -162,6 +186,39 @@ namespace YNL.Extension.Method
             }
 
             rectTransform.anchoredPosition = targetPositoin;
+        }
+
+        public static IEnumerator RotationCoroutine(RectTransform rectTransform, Vector3 target, float duration)
+        {
+            float elapsedTime = 0f;
+
+            while (elapsedTime < duration)
+            {
+                elapsedTime += Time.deltaTime;
+                float normalizedTime = Mathf.Clamp01(elapsedTime / duration);
+
+                rectTransform.localRotation = Quaternion.Lerp(rectTransform.localRotation, Quaternion.Euler(target.x, target.y, target.z) , normalizedTime);
+                yield return null;
+            }
+
+            rectTransform.localRotation = Quaternion.Euler(target.x, target.y, target.z);
+        }
+
+        public static IEnumerator ScaleCoroutine(RectTransform rectTransform, Vector3 target, float duration)
+        {
+            float elapsedTime = 0f;
+
+            while (elapsedTime < duration)
+            {
+                elapsedTime += Time.deltaTime;
+                float normalizedTime = Mathf.Clamp01(elapsedTime / duration);
+
+                rectTransform.localScale = Vector3.Lerp(rectTransform.localScale, target, normalizedTime);
+
+                yield return null;
+            }
+
+            rectTransform.localScale = target;
         }
     }
 }
