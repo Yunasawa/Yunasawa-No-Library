@@ -9,6 +9,12 @@ namespace YNL.Tools.UI
 {
     public class ImageTransition : TransitivableUI
     {
+        private List<Coroutine> _coroutines = new();
+        public TweenType TransitionType = TweenType.ExponentialInterpolation;
+        [Space(10)]
+        public bool UsingGeneralDuration = true;
+        public float GeneralDuration = 1;
+        [Space(10)]
         [SerializeField] private ImageTransitionMode _transition;
         bool _spriteTransition => _transition.Contain(ImageTransitionMode.Sprite);
         bool _colorTransition => _transition.Contain(ImageTransitionMode.Color);
@@ -21,6 +27,8 @@ namespace YNL.Tools.UI
 
         public override void OnChange(string key)
         {
+            this.StopCoroutines(_coroutines);
+
             if (_spriteTransition)
             {
                 foreach (var transition in _spriteTransitions) transition.Image.sprite = transition.Sprite[key];
@@ -29,12 +37,19 @@ namespace YNL.Tools.UI
             {
                 foreach (var transition in _colorTransitions)
                 {
-                    this.TweenColor(transition.Image, transition.Image.color, transition.Color[key], transition.Duration);
+                    _coroutines.Add(this.TweenColor(transition.Image, transition.Color[key], UsingGeneralDuration ? GeneralDuration : transition.Duration));
                 }
             }
             if (_grayscaleTransition)
             {
-
+                foreach (var transition in _grayscaleTransitions)
+                {
+                    if (!transition.EffectAmount[key]) transition.Image.material = transition.TransitionMaterial;
+                    _coroutines.Add(this.TweenMaterial(transition.TransitionMaterial, "_EffectAmount", transition.EffectAmount[key] ? 1 : 0, UsingGeneralDuration ? GeneralDuration : transition.Duration, () => 
+                    {
+                        if (transition.EffectAmount[key]) transition.Image.material = transition.OriginalMaterial;
+                    }));
+                }
             }
         }
     }
@@ -53,7 +68,7 @@ namespace YNL.Tools.UI
     {
         public Image Image;
         public SerializableDictionary<string, Color> Color = new();
-        public float Duration = 0.2f;
+        public float Duration = 1;
     }
 
     [System.Serializable]
@@ -61,15 +76,17 @@ namespace YNL.Tools.UI
     {
         public Image Image;
         public SerializableDictionary<string, Sprite> Sprite = new();
-        //public float Duration = 0.2f;
     }
 
     [System.Serializable]
     public class ImageTransitionGrayscale
     {
         public Image Image;
-        public Material Grayscale;
-        public float Duration = 0.2f;
+        public Material OriginalMaterial;
+        [Tooltip("Recommend to create an instance of Sprite-Grayscale material foreach Grayscale Transition")]
+        public Material TransitionMaterial;
+        public SerializableDictionary<string, bool> EffectAmount = new();
+        public float Duration = 1;
     }
 
 }

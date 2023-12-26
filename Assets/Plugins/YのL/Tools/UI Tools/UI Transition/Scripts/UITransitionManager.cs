@@ -19,4 +19,10 @@ namespace YNL.Tools.UI
             Events[key].Invoke();
         }
     }
+
+    [System.Serializable]
+    public enum TweenType
+    {
+        ExponentialInterpolation, LinearInterpolation
+    }
 }

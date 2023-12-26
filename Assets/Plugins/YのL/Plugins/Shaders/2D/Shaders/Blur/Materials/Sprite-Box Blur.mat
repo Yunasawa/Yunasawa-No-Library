@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sprite GrayScale
-  m_Shader: {fileID: 4800000, guid: 9e72dc2587a58de4e8ef4e4e29f28094, type: 3}
+  m_Name: Sprite-Box Blur
+  m_Shader: {fileID: 4800000, guid: 8195e110e8d2f3845a9402ff4a389348, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -29,14 +29,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BrightnessAmount: 1
-    - _ColorMask: 15
-    - _EffectAmount: 1
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _BlurAmount: 0.01
+    - _HStep: 0.5
+    - _Radius: 15
+    - _Resolution: 800
+    - _VStep: 0.5
+    m_Colors: []
   m_BuildTextureStacks: []

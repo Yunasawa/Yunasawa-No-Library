@@ -25,13 +25,13 @@ public class ITabButtonTransition : MonoBehaviour, ITabActionable
     {
         if (!_enable) return;
 
-        _thisImage?.TweenColor(_thisImage.color, _selectColor, 0.25f);
+        this.TweenColor(_thisImage, _selectColor, 0.25f);
     }
 
     public void Deselect()
     {
         if (!_enable) return;
 
-        _thisImage?.TweenColor(_thisImage.color, _unSelectColor, 0.25f);
+        this.TweenColor(_thisImage, _unSelectColor, 0.25f);
     }
 }

@@ -31,7 +31,7 @@ namespace YNL.Tools.UI
         {
             StopTransitionCoroutine();
 
-            _coroutineList.Add(this.TweenColor(_switchFrame.Image, _switchFrame.Image.color, _switchFrame.Select, _switchFrame.Duration));
+            _coroutineList.Add(this.TweenColor(_switchFrame.Image, _switchFrame.Select, _switchFrame.Duration));
             _coroutineList.Add(this.TweenAnchoredPosition(_switchToggle, _offingTogglePosition * -1, _duration));
         }
 
@@ -39,7 +39,7 @@ namespace YNL.Tools.UI
         {
             StopTransitionCoroutine();
 
-            _coroutineList.Add(this.TweenColor(_switchFrame.Image, _switchFrame.Image.color, _switchFrame.Deselect, _switchFrame.Duration));
+            _coroutineList.Add(this.TweenColor(_switchFrame.Image, _switchFrame.Deselect, _switchFrame.Duration));
             _coroutineList.Add(this.TweenAnchoredPosition(_switchToggle, _offingTogglePosition, _duration));
         }
 

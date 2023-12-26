@@ -59,15 +59,15 @@ namespace YNL.Tools.UI
             {
                 foreach (var transition in _imageTransition)
                 {
-                    transition.Image?.TweenColor(transition.Image.color, transition.Select, transition.Duration);
+                    this.TweenColor(transition.Image, transition.Select, transition.Duration);
                 }
                 foreach (var transition in _tmpTransition)
                 {
-                    transition.TMP?.TweenColor(transition.TMP.color, transition.Select, transition.Duration);
+                    this.TweenColor(transition.TMP, transition.Select, transition.Duration);
                 }
                 foreach (var transition in _transformTransition)
                 {
-                    transition.Transform?.TweenRectTransform(transition.Select, transition.Duration);
+                    this.TweenRectTransform(transition.Transform, transition.Select, transition.Duration);
                 }
             }
 
@@ -85,15 +85,15 @@ namespace YNL.Tools.UI
             {
                 foreach (var transition in _imageTransition)
                 {
-                    transition.Image?.TweenColor(transition.Image.color, transition.Deselect, transition.Duration);
+                    this.TweenColor(transition.Image, transition.Deselect, transition.Duration);
                 }
                 foreach (var transition in _tmpTransition)
                 {
-                    transition.TMP?.TweenColor(transition.TMP.color, transition.Deselect, transition.Duration);
+                    this.TweenColor(transition.TMP, transition.Deselect, transition.Duration);
                 }
                 foreach (var transition in _transformTransition)
                 {
-                    transition.Transform?.TweenRectTransform(transition.Deselect, transition.Duration);
+                    this.TweenRectTransform(transition.Transform, transition.Deselect, transition.Duration);
                 }
             }
 

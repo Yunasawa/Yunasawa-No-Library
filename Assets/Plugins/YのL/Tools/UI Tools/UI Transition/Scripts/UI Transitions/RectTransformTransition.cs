@@ -10,7 +10,11 @@ namespace YNL.Tools.UI
     public class RectTransformTransition : TransitivableUI
     {
         private List<Coroutine> _coroutines = new();
-
+        public TweenType TransitionType = TweenType.ExponentialInterpolation;
+        [Space(10)]
+        public bool UsingGeneralDuration = true;
+        public float GeneralDuration = 1;
+        [Space(10)]
         [SerializeField] private RectTransformTransitionMode _transition;
         bool _positionTransition => _transition.Contain(RectTransformTransitionMode.Position);
         bool _rotationTransition => _transition.Contain(RectTransformTransitionMode.Rotation);
@@ -30,14 +34,14 @@ namespace YNL.Tools.UI
             {
                 foreach (var transition in _positionTransitions)
                 {
-                    if (transition.Position.ContainsKey(key)) _coroutines.Add(this.TweenAnchoredPosition(transition.RectTransform, transition.Position[key] * (transition.Scalable ? transition.RectTransform.localScale : Vector3.one), transition.Duration));
+                    if (transition.Position.ContainsKey(key)) _coroutines.Add(this.TweenAnchoredPosition(transition.RectTransform, transition.Position[key] * (transition.Scalable ? transition.RectTransform.localScale : Vector3.one), UsingGeneralDuration ? GeneralDuration : transition.Duration));
                 }
             }
             if (_rotationTransition)
             {
                 foreach (var transition in _rotationTransitions)
                 {
-                    if (transition.Rotation.ContainsKey(key)) _coroutines.Add(this.TweenRotation(transition.RectTransform, transition.Rotation[key], transition.Duration));
+                    if (transition.Rotation.ContainsKey(key)) _coroutines.Add(this.TweenRotation(transition.RectTransform, transition.Rotation[key], UsingGeneralDuration ? GeneralDuration : transition.Duration));
                 }
             }
             if (_scaleTransition)
@@ -46,12 +50,12 @@ namespace YNL.Tools.UI
                 {
                     if (transition.Scale.ContainsKey(key))
                     {
-                        if (transition.ScalablePosition.ContainsKey(key))
+                        if (transition.Scale.ContainsKey(key))
                         {
-                            Vector3 scaleRate = transition.ScalablePosition[key].Scale.DividedBy(transition.RectTransform.localScale);
-                            _coroutines.Add(this.TweenAnchoredPosition(transition.RectTransform, transition.RectTransform.anchoredPosition * scaleRate, transition.Duration));
+                            Vector3 scaleRate = transition.Scale[key].Scale.DividedBy(transition.RectTransform.localScale);
+                            _coroutines.Add(this.TweenAnchoredPosition(transition.RectTransform, transition.RectTransform.anchoredPosition * scaleRate, UsingGeneralDuration ? GeneralDuration : transition.Duration));
                         }
-                        _coroutines.Add(this.TweenScale(transition.RectTransform, transition.Scale[key], transition.Duration));
+                        _coroutines.Add(this.TweenScale(transition.RectTransform, transition.Scale[key].Scale, UsingGeneralDuration ? GeneralDuration : transition.Duration));
                     }
                 }
             }     
@@ -78,8 +82,8 @@ namespace YNL.Tools.UI
         public RectTransform RectTransform;
         public SerializableDictionary<string, Vector2> Position = new();
         [Tooltip("With this be \"true\", position will be scaled with RectTrasform's localScale")]
-        public bool Scalable = false;
-        public float Duration = 0.2f;
+        public bool Scalable = true;
+        public float Duration = 1;
     }
 
     [System.Serializable]
@@ -87,17 +91,16 @@ namespace YNL.Tools.UI
     {
         public RectTransform RectTransform;
         public SerializableDictionary<string, Vector3> Rotation = new();
-        public float Duration = 0.2f;
+        public float Duration = 1;
     }
 
     [System.Serializable]
     public class RectTransitionScale
     {
         public RectTransform RectTransform;
-        public SerializableDictionary<string, Vector3> Scale = new();
-        [Tooltip("Use this to scale RectTransform's anchoredPosition on Event")]
-        public SerializableDictionary<string, ScalablePostion> ScalablePosition = new();
-        public float Duration = 0.2f;
+        [Tooltip("Tick \"Scalable\" as true to scale RectTransform's anchoredPosition on Event")]
+        public SerializableDictionary<string, ScalablePostion> Scale = new();
+        public float Duration = 1;
     }
 
     [System.Serializable]
@@ -105,13 +108,13 @@ namespace YNL.Tools.UI
     {
         public RectTransform RectTransform;
         public SerializableDictionary<string, Vector2> Size = new();
-        public float Duration = 0.2f;
+        public float Duration = 1;
     }
 
     [System.Serializable]
     public class ScalablePostion
     {
-        public bool Scalable;
-        public Vector3 Scale;
+        public bool ScalePosition = true;
+        public Vector3 Scale = Vector3.one;
     }
 }
