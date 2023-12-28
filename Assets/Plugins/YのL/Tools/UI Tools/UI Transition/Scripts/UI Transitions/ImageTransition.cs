@@ -9,6 +9,7 @@ namespace YNL.Tools.UI
 {
     public class ImageTransition : TransitivableUI
     {
+        public int CounterList;
         private List<Coroutine> _coroutines = new();
         public TweenType TransitionType = TweenType.ExponentialInterpolation;
         [Space(10)]
@@ -27,6 +28,7 @@ namespace YNL.Tools.UI
 
         public override void OnChange(string key)
         {
+            CounterList = _coroutines.Count;
             this.StopCoroutines(_coroutines);
 
             if (_spriteTransition)
@@ -37,7 +39,7 @@ namespace YNL.Tools.UI
             {
                 foreach (var transition in _colorTransitions)
                 {
-                    _coroutines.Add(this.TweenColor(transition.Image, transition.Color[key], UsingGeneralDuration ? GeneralDuration : transition.Duration));
+                    _coroutines.Add(this.TweenColor(transition.Image, transition.Color[key], UsingGeneralDuration ? GeneralDuration : transition.Duration, TransitionType));
                 }
             }
             if (_grayscaleTransition)
@@ -48,7 +50,7 @@ namespace YNL.Tools.UI
                     _coroutines.Add(this.TweenMaterial(transition.TransitionMaterial, "_EffectAmount", transition.EffectAmount[key] ? 1 : 0, UsingGeneralDuration ? GeneralDuration : transition.Duration, () => 
                     {
                         if (transition.EffectAmount[key]) transition.Image.material = transition.OriginalMaterial;
-                    }));
+                    }, TransitionType));
                 }
             }
         }

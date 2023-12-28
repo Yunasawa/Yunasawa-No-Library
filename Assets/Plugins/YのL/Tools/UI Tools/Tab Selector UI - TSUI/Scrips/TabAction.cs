@@ -8,6 +8,7 @@ using YNL.Extension.Constant;
 
 namespace YNL.Tools.UI
 {
+    [AddComponentMenu("YのL/Tools/UI/Tab Selector UI/Tab Action")]
     public class TabAction : MonoBehaviour, ITabActionable
     {
         #region ▶ Properties

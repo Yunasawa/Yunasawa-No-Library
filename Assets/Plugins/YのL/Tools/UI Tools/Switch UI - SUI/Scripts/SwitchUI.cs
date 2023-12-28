@@ -5,6 +5,7 @@ using UnityEngine.EventSystems;
 
 namespace YNL.Tools.UI
 {
+    [AddComponentMenu("YのL/Tools/UI/Switch UI")]
     public class SwitchUI : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
     {
         #region ▶ Properties

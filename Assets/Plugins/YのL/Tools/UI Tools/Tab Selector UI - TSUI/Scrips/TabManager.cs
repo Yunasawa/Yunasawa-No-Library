@@ -6,7 +6,7 @@ using YNL.Utilities;
 
 namespace YNL.Tools.UI
 {
-    [AddComponentMenu("YNL/Tools/UI/Tab Selector UI/Tab Manager")]
+    [AddComponentMenu("YのL/Tools/UI/Tab Selector UI/Tab Manager")]
     public class TabManager : MonoBehaviour
     {
         #region ▶ Properties

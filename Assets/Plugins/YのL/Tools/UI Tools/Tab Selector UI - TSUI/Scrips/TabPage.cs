@@ -2,7 +2,7 @@
 
 namespace YNL.Tools.UI
 {
-    [AddComponentMenu("YNL/Tools/UI/Tab Selector UI/Tab Page")]
+    [AddComponentMenu("YのL/Tools/UI/Tab Selector UI/Tab Page")]
     public class TabPage : MonoBehaviour
     {
         #region ▶ Properties

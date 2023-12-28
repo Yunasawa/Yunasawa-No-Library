@@ -1,0 +1,193 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
+  m_Name: Batch Render Profile
+  m_EditorClassIdentifier: 
+  settings:
+  - {fileID: 114487973608706350}
+  - {fileID: 114637371784790490}
+  - {fileID: 114080047207081828}
+  - {fileID: 114360304092720682}
+--- !u!114 &114080047207081828
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ec5db27df404d418d46e72c1825481, type: 3}
+  m_Name: BatchSequenceRenderer
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  interval:
+    overrideState: 1
+    value: 60
+--- !u!114 &114360304092720682
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1661484988a3b94c8b0f870ae32ae57, type: 3}
+  m_Name: ScreenShoter
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  interval:
+    overrideState: 1
+    value: 60
+--- !u!114 &114487973608706350
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f139b4427635ea1498884a5676123f13, type: 3}
+  m_Name: RaindropFX_HDRP
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  fadeout_fadein_switch:
+    overrideState: 1
+    value: 0
+  fastMode:
+    overrideState: 1
+    value: 1
+  fadeSpeed:
+    overrideState: 1
+    value: 0.2
+  _raindropTex_alpha:
+    overrideState: 1
+    value: {fileID: 2800000, guid: 551b620c4f5d91a4a870f3cbc372ed08, type: 3}
+    defaultState: 1
+  forceRainTextureSize:
+    overrideState: 1
+    value: 1
+  calcRainTextureSize:
+    overrideState: 1
+    value: {x: 800, y: 450}
+  calcTimeStep:
+    overrideState: 1
+    value: 0.1
+  refreshRate:
+    overrideState: 1
+    value: 0
+  generateTrail:
+    overrideState: 1
+    value: 1
+  maxStaticRaindropNumber:
+    overrideState: 1
+    value: 2000
+  maxDynamicRaindropNumber:
+    overrideState: 1
+    value: 20
+  raindropSizeRange:
+    overrideState: 1
+    value: {x: 0.1, y: 0.5}
+  useWind:
+    overrideState: 1
+    value: 1
+  windTurbulence:
+    overrideState: 1
+    value: 0.15
+  windTurbScale:
+    overrideState: 1
+    value: 0.28
+  wind:
+    overrideState: 1
+    value: {x: 1, y: 0}
+  gravity:
+    overrideState: 1
+    value: {x: 0, y: -9.8}
+  friction:
+    overrideState: 1
+    value: 0.8
+  distortion:
+    overrideState: 1
+    value: 0.5
+  useFog:
+    overrideState: 1
+    value: 0
+  fogIntensity:
+    overrideState: 1
+    value: 0.628
+  fogIteration:
+    overrideState: 1
+    value: 1
+  edgeSoftness:
+    overrideState: 1
+    value: 3
+  _inBlack:
+    overrideState: 1
+    value: 55
+  _inWhite:
+    overrideState: 1
+    value: 180
+  _outWhite:
+    overrideState: 1
+    value: 160
+  _outBlack:
+    overrideState: 1
+    value: 5
+  dropletBlur:
+    overrideState: 1
+    value: 0
+  _focalize:
+    overrideState: 1
+    value: 5
+  blurIteration:
+    overrideState: 1
+    value: 1
+  showSteps:
+    overrideState: 1
+    value: 3
+  debugLog:
+    overrideState: 0
+    value: 0
+--- !u!114 &114637371784790490
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f61beaedbd726449bd992397158cdd, type: 3}
+  m_Name: ColorLevel
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  _inBlack:
+    overrideState: 1
+    value: 0
+  _inWhite:
+    overrideState: 1
+    value: 100
+  _outWhite:
+    overrideState: 1
+    value: 255
+  _outBlack:
+    overrideState: 1
+    value: 0

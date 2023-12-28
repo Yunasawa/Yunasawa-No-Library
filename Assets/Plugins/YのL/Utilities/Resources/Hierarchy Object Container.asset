@@ -24,5 +24,5 @@ MonoBehaviour:
     - Switch UI
     - Pointable UI
     values:
-    - {fileID: 3043109758184974732, guid: e8c49e5a54ae0a54fa00d4135a9affa8, type: 3}
+    - {fileID: 7735574100719921244, guid: e8c49e5a54ae0a54fa00d4135a9affa8, type: 3}
     - {fileID: 9203681552350652150, guid: 64f75184b2092874b9f4fb1c5cf0743f, type: 3}

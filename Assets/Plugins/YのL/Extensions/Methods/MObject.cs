@@ -127,6 +127,7 @@ namespace YNL.Extension.Method
         public static void StopCoroutines(this MonoBehaviour mono, List<Coroutine> list)
         {
             foreach (var coroutine in list) mono.StopACoroutine(coroutine);
+            list.Clear();
         }
     }
 }

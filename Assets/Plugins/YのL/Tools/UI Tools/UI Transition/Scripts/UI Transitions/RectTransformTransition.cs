@@ -9,6 +9,7 @@ namespace YNL.Tools.UI
 {
     public class RectTransformTransition : TransitivableUI
     {
+        public int CounterList;
         private List<Coroutine> _coroutines = new();
         public TweenType TransitionType = TweenType.ExponentialInterpolation;
         [Space(10)]
@@ -28,20 +29,24 @@ namespace YNL.Tools.UI
 
         public override void OnChange(string key)
         {
+            CounterList = _coroutines.Count;
             this.StopCoroutines(_coroutines);
 
             if (_positionTransition)
             {
                 foreach (var transition in _positionTransitions)
                 {
-                    if (transition.Position.ContainsKey(key)) _coroutines.Add(this.TweenAnchoredPosition(transition.RectTransform, transition.Position[key] * (transition.Scalable ? transition.RectTransform.localScale : Vector3.one), UsingGeneralDuration ? GeneralDuration : transition.Duration));
+                    if (transition.Position.ContainsKey(key))
+                    {
+                        _coroutines.Add(this.TweenAnchoredPosition(transition.RectTransform, transition.Position[key] * (transition.Scalable ? transition.RectTransform.localScale : Vector3.one), UsingGeneralDuration ? GeneralDuration : transition.Duration, TransitionType));
+                    }
                 }
             }
             if (_rotationTransition)
             {
                 foreach (var transition in _rotationTransitions)
                 {
-                    if (transition.Rotation.ContainsKey(key)) _coroutines.Add(this.TweenRotation(transition.RectTransform, transition.Rotation[key], UsingGeneralDuration ? GeneralDuration : transition.Duration));
+                    if (transition.Rotation.ContainsKey(key)) _coroutines.Add(this.TweenRotation(transition.RectTransform, transition.Rotation[key], UsingGeneralDuration ? GeneralDuration : transition.Duration, TransitionType));
                 }
             }
             if (_scaleTransition)
@@ -50,18 +55,24 @@ namespace YNL.Tools.UI
                 {
                     if (transition.Scale.ContainsKey(key))
                     {
-                        if (transition.Scale.ContainsKey(key))
+                        if (transition.Scale[key].ScalePosition)
                         {
                             Vector3 scaleRate = transition.Scale[key].Scale.DividedBy(transition.RectTransform.localScale);
-                            _coroutines.Add(this.TweenAnchoredPosition(transition.RectTransform, transition.RectTransform.anchoredPosition * scaleRate, UsingGeneralDuration ? GeneralDuration : transition.Duration));
+                            _coroutines.Add(this.TweenAnchoredPosition(transition.RectTransform, transition.RectTransform.anchoredPosition * scaleRate, UsingGeneralDuration ? GeneralDuration : transition.Duration, TransitionType));
                         }
-                        _coroutines.Add(this.TweenScale(transition.RectTransform, transition.Scale[key].Scale, UsingGeneralDuration ? GeneralDuration : transition.Duration));
+                        _coroutines.Add(this.TweenScale(transition.RectTransform, transition.Scale[key].Scale, UsingGeneralDuration ? GeneralDuration : transition.Duration, TransitionType));
                     }
                 }
             }     
             if (_sizeTransition)
             {
-
+                foreach (var transition in _sizeTransitions)
+                {
+                    if (transition.Size.ContainsKey(key))
+                    {
+                        _coroutines.Add(this.TweenSize(transition.RectTransform, transition.Size[key], UsingGeneralDuration ? GeneralDuration : transition.Duration, TransitionType));
+                    }
+                }
             }
         }
     }

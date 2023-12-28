@@ -3,8 +3,6 @@ using UnityEngine.UI;
 using System.Collections;
 using TMPro;
 using System;
-using static UnityEngine.GraphicsBuffer;
-using Newtonsoft.Json.Bson;
 using YNL.Tools.UI;
 
 namespace YNL.Extension.Method
@@ -67,6 +65,11 @@ namespace YNL.Extension.Method
             return mono.StartCoroutine(MTweenCoroutine.ScaleCoroutine(rectTransform, target, duration, tween));
         }
     
+        public static Coroutine TweenSize(this MonoBehaviour mono, RectTransform rectTransform, Vector2 target, float duration, TweenType tween = TweenType.ExponentialInterpolation)
+        {
+            return mono.StartCoroutine(MTweenCoroutine.SizeCoroutine(rectTransform, target, duration, tween));
+        }
+
         public static Coroutine TweenMaterial(this MonoBehaviour mono, Material material, string key, float target, float duration, Action onComplete = null, TweenType tween = TweenType.ExponentialInterpolation)
         {
             return mono.StartCoroutine(MTweenCoroutine.MaterialCoroutine(material, key, target, duration, onComplete, tween));
@@ -217,7 +220,26 @@ namespace YNL.Extension.Method
 
             rectTransform.localScale = target;
         }
-    
+
+        public static IEnumerator SizeCoroutine(RectTransform rectTransform, Vector2 target, float duration, TweenType tween)
+        {
+            float elapsedTime = 0f;
+            Vector2 start = rectTransform.sizeDelta;
+
+            while (elapsedTime < duration)
+            {
+                elapsedTime += Time.deltaTime;
+                float normalizedTime = Mathf.Clamp01(elapsedTime / duration);
+
+                if (tween == TweenType.ExponentialInterpolation) rectTransform.sizeDelta = Vector2.Lerp(rectTransform.sizeDelta, target, normalizedTime);
+                if (tween == TweenType.LinearInterpolation) rectTransform.sizeDelta = Vector2.Lerp(start, target, normalizedTime);
+
+                yield return null;
+            }
+
+            rectTransform.sizeDelta = target;
+        }
+
         public static IEnumerator MaterialCoroutine(Material material, string key, float target, float duration, Action onComplete, TweenType tween)
         {
             float elapsedTime = 0f, normalizedTime, start = material.GetFloat(key);

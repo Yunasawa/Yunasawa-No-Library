@@ -1,10 +1,10 @@
-// Link: https://github.com/mrbeardy/BeardyGridLayout
+﻿// Link: https://github.com/mrbeardy/BeardyGridLayout
 
 using UnityEngine;
 
 namespace YNL.Tools.UI
 {
-    [AddComponentMenu("Grid Layout Group 2")]
+    [AddComponentMenu("YのL/Tools/UI/Grid Layout Group 2")]
     public class GridLayoutGroup2 : UnityEngine.UI.GridLayoutGroup
     {
         public override void SetLayoutHorizontal()
@@ -28,15 +28,11 @@ namespace YNL.Tools.UI
             if (axis == 0)
             {
                 // Only set the sizes when invoked for horizontal axis, not the positions.
-
                 for (int i = 0; i < rectChildrenCount; i++)
                 {
                     RectTransform rect = rectChildren[i];
 
-                    m_Tracker.Add(this, rect,
-                        DrivenTransformProperties.Anchors |
-                        DrivenTransformProperties.AnchoredPosition |
-                        DrivenTransformProperties.SizeDelta);
+                    m_Tracker.Add(this, rect, DrivenTransformProperties.Anchors | DrivenTransformProperties.AnchoredPosition | DrivenTransformProperties.SizeDelta);
 
                     rect.anchorMin = Vector2.up;
                     rect.anchorMax = Vector2.up;
@@ -54,27 +50,21 @@ namespace YNL.Tools.UI
             {
                 cellCountX = m_ConstraintCount;
 
-                if (rectChildrenCount > cellCountX)
-                    cellCountY = rectChildrenCount / cellCountX + (rectChildrenCount % cellCountX > 0 ? 1 : 0);
+                if (rectChildrenCount > cellCountX) cellCountY = rectChildrenCount / cellCountX + (rectChildrenCount % cellCountX > 0 ? 1 : 0);
             }
             else if (m_Constraint == Constraint.FixedRowCount)
             {
                 cellCountY = m_ConstraintCount;
 
-                if (rectChildrenCount > cellCountY)
-                    cellCountX = rectChildrenCount / cellCountY + (rectChildrenCount % cellCountY > 0 ? 1 : 0);
+                if (rectChildrenCount > cellCountY) cellCountX = rectChildrenCount / cellCountY + (rectChildrenCount % cellCountY > 0 ? 1 : 0);
             }
             else
             {
-                if (cellSize.x + spacing.x <= 0)
-                    cellCountX = int.MaxValue;
-                else
-                    cellCountX = Mathf.Max(1, Mathf.FloorToInt((width - padding.horizontal + spacing.x + 0.001f) / (cellSize.x + spacing.x)));
+                if (cellSize.x + spacing.x <= 0) cellCountX = int.MaxValue;
+                else cellCountX = Mathf.Max(1, Mathf.FloorToInt((width - padding.horizontal + spacing.x + 0.001f) / (cellSize.x + spacing.x)));
 
-                if (cellSize.y + spacing.y <= 0)
-                    cellCountY = int.MaxValue;
-                else
-                    cellCountY = Mathf.Max(1, Mathf.FloorToInt((height - padding.vertical + spacing.y + 0.001f) / (cellSize.y + spacing.y)));
+                if (cellSize.y + spacing.y <= 0) cellCountY = int.MaxValue;
+                else cellCountY = Mathf.Max(1, Mathf.FloorToInt((height - padding.vertical + spacing.y + 0.001f) / (cellSize.y + spacing.y)));
             }
 
             int cornerX = (int)startCorner % 2;
@@ -95,28 +85,16 @@ namespace YNL.Tools.UI
             }
             int lastCellsCount = rectChildrenCount % cellsPerMainAxis;
 
-            Vector2 requiredSpace = new Vector2(
-                actualCellCountX * cellSize.x + (actualCellCountX - 1) * spacing.x,
-                actualCellCountY * cellSize.y + (actualCellCountY - 1) * spacing.y
-            );
-            Vector2 startOffset = new Vector2(
-                GetStartOffset(0, requiredSpace.x),
-                GetStartOffset(1, requiredSpace.y)
-            );
+            Vector2 requiredSpace = new Vector2( actualCellCountX * cellSize.x + (actualCellCountX - 1) * spacing.x, actualCellCountY * cellSize.y + (actualCellCountY - 1) * spacing.y);
+            Vector2 startOffset = new Vector2( GetStartOffset(0, requiredSpace.x), GetStartOffset(1, requiredSpace.y));
 
             int actualLastCellsCount = lastCellsCount == 0 ? cellsPerMainAxis : lastCellsCount;
             int cellsX = startAxis == Axis.Horizontal ? actualLastCellsCount : actualCellCountX;
             int cellsY = startAxis == Axis.Vertical ? actualLastCellsCount : actualCellCountY;
 
-            Vector2 lastCellsRequiredSpace = new Vector2(
-                cellsX * cellSize.x + (cellsX - 1) * spacing.x,
-                cellsY * cellSize.y + (cellsY - 1) * spacing.y
-            );
+            Vector2 lastCellsRequiredSpace = new Vector2( cellsX * cellSize.x + (cellsX - 1) * spacing.x, cellsY * cellSize.y + (cellsY - 1) * spacing.y);
 
-            Vector2 lastCellsStartOffset = new Vector2(
-                GetStartOffset(0, lastCellsRequiredSpace.x),
-                GetStartOffset(1, lastCellsRequiredSpace.y)
-            );
+            Vector2 lastCellsStartOffset = new Vector2( GetStartOffset(0, lastCellsRequiredSpace.x),  GetStartOffset(1, lastCellsRequiredSpace.y));
 
             for (int i = 0; i < rectChildrenCount; i++)
             {
@@ -135,10 +113,8 @@ namespace YNL.Tools.UI
                     positionY = i % cellsPerMainAxis;
                 }
 
-                if (cornerX == 1)
-                    positionX = actualCellCountX - 1 - positionX;
-                if (cornerY == 1)
-                    positionY = actualCellCountY - 1 - positionY;
+                if (cornerX == 1) positionX = actualCellCountX - 1 - positionX;
+                if (cornerY == 1) positionY = actualCellCountY - 1 - positionY;
 
                 SetChildAlongAxis(rectChildren[i], 0, cellStartOffset.x + (cellSize[0] + spacing[0]) * positionX, cellSize[0]);
                 SetChildAlongAxis(rectChildren[i], 1, cellStartOffset.y + (cellSize[1] + spacing[1]) * positionY, cellSize[1]);

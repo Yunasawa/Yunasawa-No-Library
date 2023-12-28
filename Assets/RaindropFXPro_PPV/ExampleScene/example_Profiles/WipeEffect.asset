@@ -1,0 +1,374 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e6292b2c06870d4495f009f912b9600, type: 3}
+  m_Name: WipeEffect
+  m_EditorClassIdentifier: 
+  settings:
+  - {fileID: 7645858102164556300}
+  - {fileID: 7905355403475178006}
+  - {fileID: 114639151705540288}
+  - {fileID: 114325612379049212}
+--- !u!114 &114325612379049212
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27f61beaedbd726449bd992397158cdd, type: 3}
+  m_Name: ColorLevel
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  _inBlack:
+    overrideState: 1
+    value: 0
+  _inWhite:
+    overrideState: 1
+    value: 100
+  _outWhite:
+    overrideState: 1
+    value: 255
+  _outBlack:
+    overrideState: 1
+    value: 0
+--- !u!114 &114487973608706350
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f139b4427635ea1498884a5676123f13, type: 3}
+  m_Name: RaindropFX_HDRP
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  fadeout_fadein_switch:
+    overrideState: 1
+    value: 0
+  fastMode:
+    overrideState: 1
+    value: 1
+  fadeSpeed:
+    overrideState: 1
+    value: 0.2
+  _raindropTex_alpha:
+    overrideState: 1
+    value: {fileID: 2800000, guid: 551b620c4f5d91a4a870f3cbc372ed08, type: 3}
+    defaultState: 1
+  _rainMask_grayscale:
+    overrideState: 0
+    value: {fileID: 0}
+    defaultState: 1
+  pixelization:
+    overrideState: 0
+    value: 0
+  pixResolution:
+    overrideState: 0
+    value: 1
+  wipeEffect:
+    overrideState: 0
+    value: 0
+  wiper:
+    overrideState: 0
+    value: {fileID: 0}
+    defaultState: 1
+  forceRainTextureSize:
+    overrideState: 1
+    value: 1
+  calcRainTextureSize:
+    overrideState: 1
+    value: {x: 800, y: 450}
+  calcTimeStep:
+    overrideState: 1
+    value: 0.1
+  refreshRate:
+    overrideState: 1
+    value: 0
+  generateTrail:
+    overrideState: 1
+    value: 1
+  maxStaticRaindropNumber:
+    overrideState: 1
+    value: 2000
+  maxDynamicRaindropNumber:
+    overrideState: 1
+    value: 20
+  raindropSizeRange:
+    overrideState: 1
+    value: {x: 0.1, y: 0.5}
+  tintColor:
+    overrideState: 1
+    value: {r: 1, g: 1, b: 1, a: 1}
+  tintWeight:
+    overrideState: 1
+    value: 2
+  useWind:
+    overrideState: 1
+    value: 1
+  windTurbulence:
+    overrideState: 1
+    value: 1
+  windTurbScale:
+    overrideState: 1
+    value: 0.1
+  wind:
+    overrideState: 1
+    value: {x: 10, y: 0}
+  radialWind:
+    overrideState: 1
+    value: 1
+  gravity:
+    overrideState: 1
+    value: {x: 0, y: -5}
+  friction:
+    overrideState: 1
+    value: 0.8
+  distortion:
+    overrideState: 1
+    value: 0.5
+  useFog:
+    overrideState: 1
+    value: 0
+  fogIntensity:
+    overrideState: 1
+    value: 0.628
+  fogIteration:
+    overrideState: 1
+    value: 1
+  edgeSoftness:
+    overrideState: 1
+    value: 3
+  _inBlack:
+    overrideState: 1
+    value: 55
+  _inWhite:
+    overrideState: 1
+    value: 180
+  _outWhite:
+    overrideState: 1
+    value: 160
+  _outBlack:
+    overrideState: 1
+    value: 5
+  dropletBlur:
+    overrideState: 1
+    value: 0
+  _focalize:
+    overrideState: 1
+    value: 3.27
+  blurIteration:
+    overrideState: 1
+    value: 1
+  showSteps:
+    overrideState: 1
+    value: 3
+  debugLog:
+    overrideState: 0
+    value: 0
+--- !u!114 &114639151705540288
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb2d00296568ce64bb0e7b354fb0b35f, type: 3}
+  m_Name: ScreenBlend
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  distortion:
+    overrideState: 0
+    value: 0
+  colorIntensity:
+    overrideState: 1
+    value: 1
+  heightMap:
+    overrideState: 0
+    value: {fileID: 0}
+    defaultState: 1
+  colorMap:
+    overrideState: 1
+    value: {fileID: 2800000, guid: 8de5163fe688ed84cafb9d3e5fce57cd, type: 3}
+    defaultState: 1
+--- !u!114 &7645858102164556300
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f139b4427635ea1498884a5676123f13, type: 3}
+  m_Name: RaindropFX_PPV
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  fadeout_fadein_switch:
+    overrideState: 1
+    value: 0
+  fastMode:
+    overrideState: 1
+    value: 1
+  fadeSpeed:
+    overrideState: 1
+    value: 0.02
+  _raindropTex_alpha:
+    overrideState: 1
+    value: {fileID: 2800000, guid: 551b620c4f5d91a4a870f3cbc372ed08, type: 3}
+    defaultState: 1
+  _rainMask_grayscale:
+    overrideState: 0
+    value: {fileID: 2800000, guid: b99340d53593f22488003233b9ca5e4b, type: 3}
+    defaultState: 1
+  pixelization:
+    overrideState: 0
+    value: 1
+  pixResolution:
+    overrideState: 0
+    value: 282
+  wipeEffect:
+    overrideState: 1
+    value: 1
+  wiper:
+    overrideState: 1
+    value: {fileID: 0}
+    defaultState: 1
+  forceRainTextureSize:
+    overrideState: 1
+    value: 1
+  calcRainTextureSize:
+    overrideState: 1
+    value: {x: 800, y: 450}
+  calcTimeStep:
+    overrideState: 1
+    value: 0.1
+  refreshRate:
+    overrideState: 1
+    value: 1
+  generateTrail:
+    overrideState: 1
+    value: 1
+  maxStaticRaindropNumber:
+    overrideState: 1
+    value: 1000
+  maxDynamicRaindropNumber:
+    overrideState: 1
+    value: 15
+  raindropSizeRange:
+    overrideState: 1
+    value: {x: 0.1, y: 0.35}
+  tintColor:
+    overrideState: 1
+    value: {r: 1, g: 1, b: 1, a: 1}
+  tintWeight:
+    overrideState: 1
+    value: 2
+  useWind:
+    overrideState: 1
+    value: 1
+  windTurbulence:
+    overrideState: 1
+    value: 0.47
+  windTurbScale:
+    overrideState: 1
+    value: 7.39
+  wind:
+    overrideState: 1
+    value: {x: 1, y: 0}
+  radialWind:
+    overrideState: 1
+    value: 0
+  gravity:
+    overrideState: 1
+    value: {x: 0, y: -9.8}
+  friction:
+    overrideState: 1
+    value: 0.8
+  distortion:
+    overrideState: 1
+    value: 0.5
+  useFog:
+    overrideState: 1
+    value: 1
+  fogIntensity:
+    overrideState: 1
+    value: 0.411
+  fogIteration:
+    overrideState: 1
+    value: 2
+  edgeSoftness:
+    overrideState: 1
+    value: 4
+  _inBlack:
+    overrideState: 1
+    value: 55
+  _inWhite:
+    overrideState: 1
+    value: 180
+  _outWhite:
+    overrideState: 1
+    value: 160
+  _outBlack:
+    overrideState: 1
+    value: 5
+  dropletBlur:
+    overrideState: 1
+    value: 0
+  _focalize:
+    overrideState: 1
+    value: 3.4
+  blurIteration:
+    overrideState: 1
+    value: 1
+  showSteps:
+    overrideState: 1
+    value: 3
+  debugLog:
+    overrideState: 0
+    value: 0
+--- !u!114 &7905355403475178006
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b8d22b867ee4c74aa396740338dc274, type: 3}
+  m_Name: Blur
+  m_EditorClassIdentifier: 
+  active: 1
+  enabled:
+    overrideState: 1
+    value: 1
+  BlurRadius:
+    overrideState: 1
+    value: 2

@@ -10,7 +10,7 @@ using YNL.Extension.Constant;
 
 namespace YNL.Tools.UI
 {
-    [AddComponentMenu("YNL/Tools/UI/Pointable UI")]
+    [AddComponentMenu("YのL/Tools/UI/Pointable UI")]
     public class PointableUI : MonoBehaviour, ISelectHandler, IDeselectHandler, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
     {
         #region ▶ Properties

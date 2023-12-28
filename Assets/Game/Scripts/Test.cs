@@ -1,10 +1,8 @@
 using Sirenix.OdinInspector;
-using System;
-using System.Collections;
-using UnityEditor;
+using System.Collections.Generic;
 using UnityEngine;
-using YNL.Attribute;
 using YNL.Extension.Method;
+
 
 public class Test : MonoBehaviour
 {
@@ -12,8 +10,10 @@ public class Test : MonoBehaviour
     public string CurrenTimeColon = "";
     public string CurrenTimeLetter = "";
 
+    public Chat chat = new();
+
     [Button]
-    public void StartCount()
+    public void StartCount()    
     {
         StartCoroutine(MTime.CountDown(countdownDuration, OnTick, OnCountdownEnd));
     }
@@ -37,4 +37,19 @@ public class Test : MonoBehaviour
         Debug.Log("Countdown completed!");
     }
 
+    private void Update()
+    {
+#if YUNASAWA_NO_LIBRARY
+        Debug.Log("YUNASAWA");
+#endif
+    }
+}
+
+[System.Serializable]
+public class Chat
+{
+    public string quest;
+    public Chat chat1;
+    public Chat chat2;
+    public List<Chat> list = new();
 }

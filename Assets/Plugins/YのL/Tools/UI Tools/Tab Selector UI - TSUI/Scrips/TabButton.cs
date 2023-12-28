@@ -6,7 +6,7 @@ using YNL.Extension.Method;
 
 namespace YNL.Tools.UI
 {
-    [AddComponentMenu("YNL/Tools/UI/Tab Selector UI/Tab Button")]
+    [AddComponentMenu("YのL/Tools/UI/Tab Selector UI/Tab Button")]
     public class TabButton : MonoBehaviour
     {
         #region ▶ Properties
