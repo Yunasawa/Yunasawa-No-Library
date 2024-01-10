@@ -1,0 +1,16 @@
+{
+    "name": "YNL.RPG",
+    "rootNamespace": "",
+    "references": [
+        "GUID:872005290411e864ea5c6a18c87f50ad"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
