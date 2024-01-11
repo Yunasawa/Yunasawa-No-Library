@@ -8,7 +8,7 @@ using UnityEngine.AddressableAssets.ResourceLocators;
 using Newtonsoft.Json;
 using YNL.Pattern.Singleton;
 
-namespace YNL.Pattern.Addressable
+namespace YNL.Technic.Addressable
 {
     public class AddressableManager : Singleton<AddressableManager>
     {

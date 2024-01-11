@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9246952ac1532f41bf0ec24cacdd064, type: 3}
+  m_Name: Bullet
+  m_EditorClassIdentifier: 
+  Code: 
+  Name: 
+  Type: 1
+  Description: 
+  Icon: {fileID: 0}
+  ManaCost: 0
+  CastTime: 1.5
+  SkillDelay: 0
+  Cooldown: 0
+  Properties:
+    keys:
+    - Damage
+    values:
+    - 12
+  CastEffect: {fileID: 961898797985303666, guid: 475d817e05c0c2f45ad931bfc92ad1c3, type: 3}
+  SoundEffect: {fileID: 0}
+  StatusEffect: 15

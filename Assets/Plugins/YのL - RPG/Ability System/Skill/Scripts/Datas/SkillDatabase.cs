@@ -1,15 +1,11 @@
+using UnityEngine;
 using YNL.Utilities;
 
 namespace YNL.RPG
 {
-    [System.Serializable]
-    public class SkillDatabase
+    [CreateAssetMenu(menuName = "YNL/Skill Database", fileName = "Skill Database")]
+    public class SkillDatabase : ScriptableObject
     {
-        public SerializableDictionary<string, Skill> Skills;
-
-        public Skill GetSkill(string code)
-        {
-            return Skills[code];
-        }
+        public SerializableDictionary<string, Skill> Skills = new();
     }
 }
