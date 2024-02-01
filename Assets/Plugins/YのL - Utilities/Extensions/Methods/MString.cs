@@ -255,7 +255,7 @@ namespace YNL.Extension.Method
         }
     }
 
-    public static class YMFormat
+    public static class MFormat
     {
         #region 💱 Unit Format
         public static string DecimalFormat(this int number, int digit) => number.ToString($"D{digit}");
@@ -307,7 +307,7 @@ namespace YNL.Extension.Method
         #endregion
     }
 
-    public static class YMSpecificString
+    public static class MSpecificString
     {
         /// <summary>
         /// Convert all words in a text that match the input word into color format, ignore letter case.
